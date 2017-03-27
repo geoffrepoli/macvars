@@ -3,3 +3,9 @@ ioreg -l -c IODeviceTree | awk -F\" '/com.apple.corestorage.lvg.name/{print $(NF
 
 # SERIAL NUMBER
 ioreg -c IOPlatformExpertDevice -d 2 | awk -F\" '/IOPlatformSerialNumber/{print $(NF-1)}'
+
+# COMPUTER NAME ("FRIENDLY NAME")
+scutil --get ComputerName
+
+# BONJOUR NAME
+scutil --get LocalHostName
