@@ -1,0 +1,2 @@
+# Skype for Business Version #
+defaults read "/Applications/Skype for Business.app/Contents/Info.plist" CFBundleShortVersionString
