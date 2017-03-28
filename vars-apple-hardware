@@ -11,10 +11,10 @@ scutil --get ComputerName
 scutil --get LocalHostName
 
 # COMPUTER SLEEP
-systemsetup -getsleep | grep Computer | sed 's/Sleep: Computer sleeps //'
+systemsetup -getsleep | awk '/Computer/{print $4,$5}' | sed 's/after//'
 
 # DISPLAY SLEEP
-systemsetup -getsleep | grep Display | sed 's/Sleep: Display sleeps //'
+systemsetup -getsleep | awk '/Display/{print $4,$5}' | sed 's/after//'
 
 # DISK SLEEP
-systemsetup -getsleep | grep Disk | sed 's/Sleep: Disk sleeps //'
+systemsetup -getsleep | awk '/Disk/{print $4,$5}' | sed 's/after//'
