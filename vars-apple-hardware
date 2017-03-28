@@ -9,3 +9,12 @@ scutil --get ComputerName
 
 # BONJOUR NAME
 scutil --get LocalHostName
+
+# COMPUTER SLEEP
+systemsetup -getsleep | grep Computer | sed 's/Sleep: Computer sleeps //'
+
+# DISPLAY SLEEP
+systemsetup -getsleep | grep Display | sed 's/Sleep: Display sleeps //'
+
+# DISK SLEEP
+systemsetup -getsleep | grep Disk | sed 's/Sleep: Disk sleeps //'
