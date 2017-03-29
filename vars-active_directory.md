@@ -1,4 +1,4 @@
-## Active Directory Variables
+## Active Directory
 
 ###### ACTIVE DIRECTORY DOMAIN
 ```bash
