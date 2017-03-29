@@ -1,3 +1,5 @@
+## Network Info
+
 ###### ACTIVE NETWORK INTERFACE
 ```bash
 scutil --nwi | grep -A1 "IPv4 network" | sed '1d' | awk '{print $1}'
