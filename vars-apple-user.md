@@ -12,7 +12,7 @@ dscl . read /Users/<USER_SHORT_NAME> NFSHomeDirectory
 $(homedir=~<USER_SHORT_NAME>; eval homedir="$homedir"; echo "$homedir")
 ```
 
-###### USER LOGGED IN TIME *(reported in decimal hours)*
+###### LOGGED-IN TIME *(reported in decimal hours)*
 ```bash
 ac -p | grep -w <USER_SHORT_NAME> | awk '{print $NF}'
 ```
