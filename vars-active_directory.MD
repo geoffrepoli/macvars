@@ -6,7 +6,7 @@ dsconfigad -show | awk -F'= ' '/Active Directory Domain/{print $NF}'
 ```bash
 dsconfigad -show | awk -F'= ' '/Active Directory Forest/{print $NF}'
 ```
-###### COMPUTER ID
+###### COMPUTER ACCOUNT
 ```bash
 dsconfigad -show | awk -F'= ' '/Computer Account/{print $NF}'
 ```
