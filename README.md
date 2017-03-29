@@ -1,4 +1,4 @@
-# MAC VARIABLES
+# MAC VARS
 
 ### Command library for macOS scripting
 
