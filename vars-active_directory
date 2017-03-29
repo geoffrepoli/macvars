@@ -4,6 +4,9 @@ dsconfigad -show | awk '/Active Directory Domain/{print $NF}'
 # ACTIVE DIRECTORY FOREST
 dsconfigad -show | awk '/Active Directory Forest/{print $NF}'
 
+# COMPUTER ID
+dsconfigad -show | awk '/Computer Account/{print $NF}'
+
 # ALLOWED ADMIN GROUPS
 dsconfigad -show | awk -F'= ' '/admin groups/{print $NF}'
 
