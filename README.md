@@ -15,4 +15,4 @@
 [User Info](vars-apple-user.md) - Attributes specific to the (usually) logged-in user.
 
 
-#### Feel free to contribute with a pull request. This is a work in progress
+#### *Feel free to contribute with a pull request. This is a work in progress
