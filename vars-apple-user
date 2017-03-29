@@ -6,3 +6,6 @@ dscl . read /Users/<USER_SHORT_NAME> NFSHomeDirectory
 #   note: the following trick can be used for network users as well, 
 #   since `~` + `username` expands to `username`'s home directory. Set variable = to:
 $(homedir=~<USER_SHORT_NAME>; eval homedir="$homedir"; echo "$homedir")
+
+# USER LOGGED IN TIME (reported in decimal hours)
+ac -p | grep -w <USER_SHORT_NAME> | awk '{print $NF}'
