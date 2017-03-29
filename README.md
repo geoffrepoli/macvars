@@ -1,6 +1,6 @@
 # MAC VARIABLES
 
-##### A collection of useful, common (and not-so-common) Mac-specific variables
+### A collection of useful, common (and not-so-common) Mac-specific variables
 
 ##### [Active Directory](https://github.com/geoffrepoli/mac-variables/blob/master/vars-active_directory.md)
 
