@@ -1,6 +1,6 @@
-# MACOS VARIABLES
+# MAC VARIABLES
 
-### command library for macos scripting
+### Command library for macOS scripting
 
 
 
