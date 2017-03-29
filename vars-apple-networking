@@ -7,7 +7,7 @@ networksetup -listallhardwareports | grep "$(scutil --nwi | grep -A1 "IPv4 netwo
 # ACTIVE MAC ADDRESS
 networksetup -getmacaddress "$(scutil --nwi | grep -A1 "IPv4 network" | sed '1d' | awk '{print $1}')" | awk '{print $3}'
 
-# WI-FI DEVICE
+# WI-FI INTERFACE
 networksetup -listallhardwareports | grep -A1 Wi-Fi | awk '/Device/{print $NF}'
 
 # WI-FI POWER
