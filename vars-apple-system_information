@@ -34,7 +34,7 @@ systemsetup -getnetworktimeserver | awk '{print $NF}'
 # SSH STATUS
 systemsetup -getremotelogin | awk '{print $NF}'
 
-# PRINTER SHARING (0 = disabled; 1 = enabled)
+# PRINTER SHARING
 cupsctl | grep share | tail -c2
 
 # COMPUTER SLEEP
