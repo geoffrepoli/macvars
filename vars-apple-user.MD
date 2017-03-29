@@ -2,6 +2,7 @@
 ```bash
 /usr/bin/python -c 'from SystemConfiguration import SCDynamicStoreCopyConsoleUser; import sys; username = (SCDynamicStoreCopyConsoleUser(None, None, None) or [None])[0]; username = [username,""][username in [u"loginwindow", None, u""]]; sys.stdout.write(username + "\n");'
 ```
+
 ###### HOME DIRECTORY OF LOGGED-IN USER
 ```bash
 dscl . read /Users/<USER_SHORT_NAME> NFSHomeDirectory
@@ -11,13 +12,12 @@ dscl . read /Users/<USER_SHORT_NAME> NFSHomeDirectory
 $(homedir=~<USER_SHORT_NAME>; eval homedir="$homedir"; echo "$homedir")
 ```
 
-###### USER LOGGED IN TIME 
-###### *(reported in decimal hours)*
+###### USER LOGGED IN TIME *(reported in decimal hours)*
 ```bash
 ac -p | grep -w <USER_SHORT_NAME> | awk '{print $NF}'
 ```
-###### TOUCH ID STATUS 
-###### *(if true, then... e.g.,: `[ $VAR ] && echo Enabled`)*
+
+###### TOUCH ID STATUS *(if true, then... e.g.,: `[ $VAR ] && echo Enabled`)*
 ```bash
 bioutil -c -s | grep -wE "<USER_SHORT_NAME>|$(id -u <USER_SHORT_NAME>)"
 ```
