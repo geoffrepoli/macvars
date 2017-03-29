@@ -2,5 +2,7 @@
 /usr/bin/python -c 'from SystemConfiguration import SCDynamicStoreCopyConsoleUser; import sys; username = (SCDynamicStoreCopyConsoleUser(None, None, None) or [None])[0]; username = [username,""][username in [u"loginwindow", None, u""]]; sys.stdout.write(username + "\n");'
 
 # HOME DIRECTORY OF LOGGED-IN USER
-# Note: "$LOGGED_IN_USER" 
-$(homedir="~$LOGGED_IN_USER"; eval homedir="$homedir"; echo "$homedir")
+dscl . read /Users/<USER_SHORT_NAME> NFSHomeDirectory
+# note: the following trick can be used for network users as well, 
+#   since `~` + `username` expands to `username`'s home directory. Set variable = to:
+$(homedir=~<USER_SHORT_NAME>; eval homedir="$homedir"; echo "$homedir")
