@@ -7,6 +7,12 @@ networksetup -listallhardwareports | grep "$(echo "show State:/Network/Global/IP
 # ACTIVE MAC ADDRESS
 networksetup -getmacaddress "$(echo "show State:/Network/Global/IPv4" | scutil | awk '/PrimaryInterface/{print $NF}')" | awk '{print $3}'
 
+# WI-FI HARDWARE PORT
+networksetup -listallhardwareports | grep -A1 Wi-Fi | awk '/Device/{print $NF}'
+
+# WI-FI POWER
+networksetup -getairportpower "$(networksetup -listallhardwareports | grep -A1 Wi-Fi | awk '/Device/{print $NF}')" | awk '{print $NF}'
+
 # CURRENT SSID
 networksetup -getairportnetwork "$(networksetup -listallhardwareports | grep -A1 Wi-Fi | awk '/Device/{print $2}')" 2> /dev/null | awk -F': ' '{print $NF}'
 
