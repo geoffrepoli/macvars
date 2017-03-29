@@ -1,12 +1,13 @@
 
-# STARTUP DISK NAME
-```
+#### STARTUP DISK NAME
+```bash
 ioreg -l -c IODeviceTree | awk -F\" '/com.apple.corestorage.lvg.name/{print $(NF-1)}'
 ```
-# SERIAL NUMBER
+#### SERIAL NUMBER
+```bash
 ioreg -c IOPlatformExpertDevice -d 2 | awk -F\" '/IOPlatformSerialNumber/{print $(NF-1)}'
-
-# HARDWARE MODEL
+```
+##### HARDWARE MODEL
 sysctl -n hw.model
 
 # COMPUTER NAME ("FRIENDLY NAME")
