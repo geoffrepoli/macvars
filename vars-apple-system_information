@@ -10,7 +10,7 @@ sysctl -n hw.model
 # COMPUTER NAME ("FRIENDLY NAME")
 scutil --get ComputerName
 
-# BONJOUR NAME
+# BONJOUR NAME ("LOCAL SUBNET NAME")
 scutil --get LocalHostName
 
 # HOSTNAME (note: can simply use environmental variable `$HOSTNAME`)
