@@ -2,7 +2,6 @@
 
 ### command library for mac scripting
 
-===
 
 
 [Active Directory](https://github.com/geoffrepoli/mac-variables/blob/master/vars-active_directory.md) - Mostly utilizing `dsconfigad`
