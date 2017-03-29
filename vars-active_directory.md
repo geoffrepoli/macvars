@@ -1,3 +1,5 @@
+## Active Directory Variables
+
 ###### ACTIVE DIRECTORY DOMAIN
 ```bash
 dsconfigad -show | awk -F'= ' '/Active Directory Domain/{print $NF}'
