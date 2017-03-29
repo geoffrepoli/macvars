@@ -19,8 +19,7 @@ scutil --get ComputerName
 ```bash
 scutil --get LocalHostName
 ```
-###### HOSTNAME
-###### *(note: can simply use environment variable `$HOSTNAME`)*
+###### HOSTNAME *(note: can simply use environment variable `$HOSTNAME`)*
 ```bash
 sysctl -n kern.hostname
 ```
