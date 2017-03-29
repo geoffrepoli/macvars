@@ -1,13 +1,13 @@
 # ACTIVE NETWORK INTERFACE
-echo "show State:/Network/Global/IPv4" | scutil | awk '/PrimaryInterface/{print $NF}'
+scutil --nwi | grep -A1 "IPv4 network" | sed '1d' | awk '{print $1}'
 
 # ACTIVE NETWORK SERVICE
-networksetup -listallhardwareports | grep "$(echo "show State:/Network/Global/IPv4" | scutil | awk '/PrimaryInterface/{print $NF}')" -B1 | awk -F': ' '/Hardware Port/{print $NF}'
+networksetup -listallhardwareports | grep "$(scutil --nwi | grep -A1 "IPv4 network" | sed '1d' | awk '{print $1}')" -B1 | awk -F': ' '/Hardware Port/{print $NF}'
 
 # ACTIVE MAC ADDRESS
-networksetup -getmacaddress "$(echo "show State:/Network/Global/IPv4" | scutil | awk '/PrimaryInterface/{print $NF}')" | awk '{print $3}'
+networksetup -getmacaddress "$(scutil --nwi | grep -A1 "IPv4 network" | sed '1d' | awk '{print $1}')" | awk '{print $3}'
 
-# WI-FI HARDWARE PORT
+# WI-FI DEVICE
 networksetup -listallhardwareports | grep -A1 Wi-Fi | awk '/Device/{print $NF}'
 
 # WI-FI POWER
@@ -17,4 +17,4 @@ networksetup -getairportpower "$(networksetup -listallhardwareports | grep -A1 W
 networksetup -getairportnetwork "$(networksetup -listallhardwareports | grep -A1 Wi-Fi | awk '/Device/{print $2}')" 2> /dev/null | awk -F': ' '{print $NF}'
 
 # IP ADDRESS
-ipconfig getifaddr "$(echo "show State:/Network/Global/IPv4" | scutil | awk '/PrimaryInterface/{print $NF}')"
+ipconfig getifaddr "$(scutil --nwi | grep -A1 "IPv4 network" | sed '1d' | awk '{print $1}')"
