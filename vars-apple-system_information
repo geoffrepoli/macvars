@@ -25,11 +25,14 @@ cupsctl | grep share | tail -c2
 # TIME ZONE
 systemsetup -gettimezone | awk '{print $NF}'
 
-# NETWORK TIME ENABLED
+# NETWORK TIME STATUS
 systemsetup -getusingnetworktime | awk '{print $NF}'
 
 # NETWORK TIME SERVER
 systemsetup -getnetworktimeserver | awk '{print $NF}'
+
+# SSH STATUS
+systemsetup -getremotelogin | awk '{print $NF}'
 
 # COMPUTER SLEEP
 systemsetup -getcomputersleep | awk -F': ' '{print $NF}' | sed 's/after\ //'
