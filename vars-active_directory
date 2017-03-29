@@ -14,7 +14,7 @@ dsconfigad -show | awk '/protocol/{print $NF}'
 dsconfigad -show | awk '/mobile/{print $NF}'
 
 # USING LOCAL HOMES
-dsconfigad -show | awk '/startup disk/{print $NF}'
+dsconfigad -show | awk '/startup/{print $NF}'
 
 # PACKET SIGNING
 dsconfigad -show | awk -F'= ' '/Packet signing/{print $NF}'
