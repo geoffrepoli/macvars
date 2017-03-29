@@ -18,8 +18,7 @@ sw_vers -productVersion | awk -F. '{print $3}'
 sw_vers -buildVersion
 ```
 
-###### SOFTWARE UPDATE SERVER
-###### *(key does not exist if set to default)*
+###### SOFTWARE UPDATE SERVER *(key does not exist if set to default)*
 ```bash
 defaults read /Library/Preferences/com.apple.SoftwareUpdate.plist CatalogURL
 ```
