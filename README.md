@@ -1,6 +1,8 @@
 # MAC VARIABLES
 
-Some, hopefully, useful commands to grab Mac-specific attributes for scripting
+Command reference for scripting on Macs
+
+
 
 [Active Directory](https://github.com/geoffrepoli/mac-variables/blob/master/vars-active_directory.md) - Mostly utilizing `dsconfigad`
 
