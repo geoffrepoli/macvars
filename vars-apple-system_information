@@ -21,3 +21,21 @@ expr $(( $(sysctl -n hw.memsize) / 1073741274 ))
 
 # PRINTER SHARING ENABLED (0 = disabled; 1 = enabled)
 cupsctl | grep share | tail -c2
+
+# TIME ZONE
+systemsetup -gettimezone | awk '{print $NF}'
+
+# NETWORK TIME ENABLED
+systemsetup -getusingnetworktime | awk '{print $NF}'
+
+# NETWORK TIME SERVER
+systemsetup -getnetworktimeserver | awk '{print $NF}'
+
+# COMPUTER SLEEP
+systemsetup -getcomputersleep | awk -F': ' '{print $NF}' | sed 's/after\ //'
+
+# DISPLAY SLEEP
+systemsetup -getdisplaysleep | awk -F': ' '{print $NF}' | sed 's/after\ //'
+
+# HARD DISK SLEEP
+systemsetup -getharddisksleep | awk -F': ' '{print $NF}' | sed 's/after\ //'
