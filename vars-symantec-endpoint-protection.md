@@ -1,3 +1,5 @@
+## Symantec Endpoint Protection
+
 ###### SEP VERSION
 ```
 defaults read "/Applications/Symantec Solutions/Symantec Endpoint Protection.app/Contents/Info.plist" CFBundleShortVersionString
