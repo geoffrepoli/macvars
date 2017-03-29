@@ -13,7 +13,7 @@ scutil --get ComputerName
 # BONJOUR NAME ("LOCAL SUBNET NAME")
 scutil --get LocalHostName
 
-# HOSTNAME (note: can simply use environmental variable `$HOSTNAME`)
+# HOSTNAME (note: can simply use environment variable `$HOSTNAME`)
 sysctl -n kern.hostname
 
 # RAM (GB)
