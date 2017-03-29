@@ -25,6 +25,9 @@ spctl --status | awk '{print toupper(substr($NF,1,1)) substr($NF,2)}'
 # SPOTLIGHT INDEXING STATUS
 mdutil --status / | sed -e '1d' -e 's/\.//' | awk '{print toupper(substr($NF,1,1)) substr($NF,2)}'
 
+# USER CONFIGURED TOUCH ID
+bioutil -c -s | grep -wE "<USER_SHORT_NAME>|$(id -u <USER_SHORT_NAME>)"
+
 # TIME ZONE
 systemsetup -gettimezone | awk '{print $NF}'
 
