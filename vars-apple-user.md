@@ -1,4 +1,4 @@
-# User Info
+## User Info
 
 ###### LOGGED-IN USER NAME
 ```bash
