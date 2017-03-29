@@ -1,0 +1,23 @@
+# ACTIVE DIRECTORY DOMAIN
+dsconfigad -show | awk '/Active Directory Domain/{print $NF}'
+
+# ACTIVE DIRECTORY FOREST
+dsconfigad -show | awk '/Active Directory Forest/{print $NF}'
+
+# ALLOWED ADMIN GROUPS
+dsconfigad -show | awk -F'= ' '/admin groups/{print $NF}'
+
+# NETWORK PROTOCOL
+dsconfigad -show | awk '/protocol/{print $NF}'
+
+# USING MOBILE ACCOUNTS
+dsconfigad -show | awk '/mobile/{print $NF}'
+
+# USING LOCAL HOMES
+dsconfigad -show | awk '/startup disk/{print $NF}'
+
+# PACKET SIGNING
+dsconfigad -show | awk -F'= ' '/Packet signing/{print $NF}'
+
+# PACKET ENCRYPTION
+dsconfigad -show | awk -F'= ' '/Packet encryption/{print $NF}'
