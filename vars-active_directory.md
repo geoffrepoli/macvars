@@ -11,7 +11,7 @@ dsconfigad -show | awk -F'= ' '/Active Directory Forest/{print $NF}'
 ```
 
 ###### DOMAIN X509 EXPIRATION
-security find-certificate -a -c <CERT NAME> -p | openssl x509 -enddate -noout | cut -d= -f2 | xargs -I % date -jf '%b  %d %T %Y %Z' % "+%F %T %Z"
+security find-certificate -a -c `<CERT NAME>` -p | openssl x509 -enddate -noout | cut -d= -f2 | xargs -I % date -jf '%b  %d %T %Y %Z' % "+%F %T %Z"
 
 ###### COMPUTER ACCOUNT
 ```bash
