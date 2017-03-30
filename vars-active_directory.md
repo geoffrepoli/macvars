@@ -10,9 +10,10 @@ dsconfigad -show | awk -F'= ' '/Active Directory Domain/{print $NF}'
 dsconfigad -show | awk -F'= ' '/Active Directory Forest/{print $NF}'
 ```
 
-###### DOMAIN X509 EXPIRATION
+###### DOMAIN X.509 EXPIRATION
+```bash
 security find-certificate -a -c $NAME_OF_CERT -p | openssl x509 -enddate -noout | cut -d= -f2 | xargs -I % date -jf '%b  %d %T %Y %Z' % "+%F %T %Z"
-
+```
 ###### COMPUTER ACCOUNT
 ```bash
 dsconfigad -show | awk -F'= ' '/Computer Account/{print $NF}'
