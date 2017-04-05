@@ -2,7 +2,7 @@
 
 ###### STARTUP DISK NAME
 ```bash
-ioreg -l -c IODeviceTree | awk -F\" '/com.apple.corestorage.lvg.name/{print $(NF-1)}'
+ioreg -c CoreStorageGroup | awk -F\" '/com.apple.corestorage.lvg.name/{print $(NF-1)}'
 ```
 
 ###### SERIAL NUMBER
