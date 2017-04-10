@@ -50,22 +50,22 @@ mdutil --status / | sed -e '1d' -e 's/\.//' | awk '{print toupper(substr($NF,1,1
 
 ###### TIME ZONE
 ```bash
-systemsetup -gettimezone | awk '{print $NF}'
+systemsetup -gettimezone | awk -F': ' '{print $NF}'
 ```
 
 ###### NETWORK TIME STATUS
 ```bash
-systemsetup -getusingnetworktime | awk '{print $NF}'
+systemsetup -getusingnetworktime | awk -F': ' '{print $NF}'
 ```
 
 ###### NETWORK TIME SERVER
 ```bash
-systemsetup -getnetworktimeserver | awk '{print $NF}'
+systemsetup -getnetworktimeserver | awk -F': ' '{print $NF}'
 ```
 
 ###### SSH STATUS
 ```bash
-systemsetup -getremotelogin | awk '{print $NF}'
+systemsetup -getremotelogin | awk -F': ' '{print $NF}'
 ```
 
 ###### PRINTER SHARING
