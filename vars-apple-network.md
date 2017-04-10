@@ -7,12 +7,12 @@ scutil --nwi | grep -A1 "IPv4 network" | sed '1d' | awk '{print $1}'
 
 ###### ACTIVE NETWORK SERVICE
 ```bash
-networksetup -listallhardwareports | grep "$(scutil --nwi | grep -A1 "IPv4 network" | sed '1d' | awk '{print $1}')" -B1 | awk -F': ' '/Hardware Port/{print $NF}'
+networksetup -listallhardwareports | grep $(scutil --nwi | grep -A1 "IPv4 network" | sed '1d' | awk '{print $1}') -B1 | awk -F': ' '/Hardware Port/{print $NF}'
 ```
 
 ###### ACTIVE MAC ADDRESS
 ```bash
-networksetup -getmacaddress "$(scutil --nwi | grep -A1 "IPv4 network" | sed '1d' | awk '{print $1}')" | awk '{print $3}'
+networksetup -getmacaddress $(scutil --nwi | grep -A1 "IPv4 network" | sed '1d' | awk '{print $1}') | awk '{print $3}'
 ```
 
 ###### WI-FI INTERFACE
