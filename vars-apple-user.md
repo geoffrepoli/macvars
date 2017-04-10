@@ -7,7 +7,7 @@
 
 ###### LOGGED-IN USER HOME
 ```bash
-dscl . read /Users/<USER_SHORT_NAME> NFSHomeDirectory
+dscl . read /Users/<USER_SHORT_NAME> NFSHomeDirectory | awk -F': ' '{print $NF}'
 ```
 ###### *note: the following trick can be used for network users as well, since `~` + `username` expands to `username`'s home directory. Set variable = to:*
 ```bash
