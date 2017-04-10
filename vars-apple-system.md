@@ -28,9 +28,10 @@ scutil --get LocalHostName
 ```bash
 security find-certificate -c <NAME_OF_CERT> -p | openssl x509 -enddate -noout | cut -d\= -f2 | xargs -I {} date -jf "%b %d %T %Y %Z" {} "+%F %T %Z"
 ```
-###### HOSTNAME *(note: can simply use environment variable `$HOSTNAME`)*
+###### HOSTNAME
 ```bash
 sysctl -n kern.hostname
+# note: can simply use environment variable $HOSTNAME
 ```
 
 ###### RAM (GB)
