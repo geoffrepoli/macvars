@@ -17,17 +17,17 @@ networksetup -getmacaddress "$(scutil --nwi | grep -A1 "IPv4 network" | sed '1d'
 
 ###### WI-FI INTERFACE
 ```bash
-networksetup -listallhardwareports | grep -A1 Wi-Fi | awk '/Device/{print $NF}'
+networksetup -listallhardwareports | grep -A1 Wi-Fi | awk -F': ' '/Device/{print $NF}'
 ```
 
 ###### WI-FI POWER
 ```bash
-networksetup -getairportpower "$(networksetup -listallhardwareports | grep -A1 Wi-Fi | awk '/Device/{print $NF}')" | awk '{print $NF}'
+networksetup -getairportpower "$(networksetup -listallhardwareports | grep -A1 Wi-Fi | awk -F': ' '/Device/{print $NF}')" | awk '{print $NF}'
 ```
 
 ###### CURRENT SSID
 ```bash
-networksetup -getairportnetwork "$(networksetup -listallhardwareports | grep -A1 Wi-Fi | awk '/Device/{print $2}')" 2> /dev/null | awk -F': ' '{print $NF}'
+networksetup -getairportnetwork "$(networksetup -listallhardwareports | grep -A1 Wi-Fi | awk -F': ' '/Device/{print $2}')" 2> /dev/null | awk -F': ' '{print $NF}'
 ```
 
 ###### IP ADDRESS
