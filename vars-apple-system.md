@@ -36,7 +36,8 @@ sysctl -n kern.hostname
 ###### RAM (GB)
 ```bash
 expr $(sysctl -n hw.memsize) / 1073741274
-## just set your var=$(( $(sysctl -n hw.memsize) / 1073741274 ))
+# just set your var=$(( $(sysctl -n hw.memsize) / 1073741274 ))
+# hw.memsize reports in bytes, 1073741274 is 1GB in bytes
 ```
 
 ###### GATEKEEPER STATUS
