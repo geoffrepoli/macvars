@@ -36,9 +36,8 @@
 
 ###### RAM (GB)
 ```bash
-expr $(sysctl -n hw.memsize) / 1073741274
-# just set your var=$(( $(sysctl -n hw.memsize) / 1073741274 ))
-# hw.memsize reports in bytes, 1073741274 is 1GB in bytes
+expr $(/usr/sbin/sysctl -n hw.memsize) / 1073741274
+# set variable to above with your_variable=$(( $(/usr/sbin/sysctl -n hw.memsize) / 1073741274 ))
 ```
 
 ###### GATEKEEPER STATUS
