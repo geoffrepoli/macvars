@@ -7,19 +7,18 @@
 
 ###### LOGGED-IN USER HOME
 ```bash
-dscl . read /Users/<USER_SHORT_NAME> NFSHomeDirectory | awk -F': ' '{print $NF}'
-```
-###### *note: the following trick can be used for network users as well, since `~` + `username` expands to `username`'s home directory. Set variable = to:*
-```bash
-$(homedir=~<USER_SHORT_NAME>; eval homedir="$homedir"; echo "$homedir")
+/usr/bin/dscl /Local/Default read /Users/<USER_SHORT_NAME> NFSHomeDirectory | awk -F': ' '{print $NF}'
+# will not work for network users. the following will get the home directory of any user, including network:
+`homedir=~<USER_SHORT_NAME>; eval homedir="$homedir"; echo "$homedir"`
 ```
 
 ###### LOGGED-IN TIME *(reported in decimal hours)*
 ```bash
-ac -p | grep -w <USER_SHORT_NAME> | awk '{print $NF}'
+/usr/sbin/ac -p | grep -w <USER_SHORT_NAME> | awk '{print $NF}'
 ```
 
-###### TOUCH ID STATUS *(if true, then... e.g.,: `[ $VAR ] && echo Enabled`)*
+###### TOUCH ID STATUS
 ```bash
-bioutil -c -s | grep -wE "<USER_SHORT_NAME>|$(id -u <USER_SHORT_NAME>)"
+/usr/bin/bioutil -c -s | grep -wE "<USER_SHORT_NAME>|$(id -u <USER_SHORT_NAME>)"
+# only available on Macs with Touch Bar
 ```
