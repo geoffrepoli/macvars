@@ -9,7 +9,7 @@
 
 ###### LOGGED-IN USER HOME
 ```bash
-/usr/bin/dscl /Local/Default read /Users/<USER_SHORT_NAME> NFSHomeDirectory | awk -F': ' '{print $NF}'
+/usr/bin/dscl /Local/Default read /Users/"$loggedinuser" NFSHomeDirectory | awk -F': ' '{print $NF}'
 # Note: the command above will not work if user is a network account
 # The following workflow, while strange, will work on any user type.
 # $userhome variable name is just a placeholder, feel free to change.
