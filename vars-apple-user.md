@@ -8,8 +8,9 @@
 ###### LOGGED-IN USER HOME
 ```bash
 /usr/bin/dscl /Local/Default read /Users/<USER_SHORT_NAME> NFSHomeDirectory | awk -F': ' '{print $NF}'
-# will not work for network users. the following will get the home directory of any user, including network:
-`homedir=~<USER_SHORT_NAME>; eval homedir="$homedir"; echo "$homedir"`
+# Note: the command above will not work if user is a network account
+# The following variable will work on any user type:
+var=$(homedir=~<USER_SHORT_NAME>; eval homedir="$homedir"; echo "$homedir")
 ```
 
 ###### LOGGED-IN TIME *(reported in decimal hours)*
