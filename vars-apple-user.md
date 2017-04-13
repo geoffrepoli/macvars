@@ -12,7 +12,7 @@
 # The following workflow, while strange, will work on any user type. Ensure you assign a
 # value to the $loggedinuser variable (e.g., use the LOGGED-IN USER NAME command above).
 # "userhome" variable name is just a placeholder, feel free to replace it.
-userhome=$(h=~"$loggedinuser"; eval h="$h"; echo "$h")
+userhome=$(h=~"$loggedinuser" ; eval h="$h" ; echo "$h")
 ```
 
 ###### LOGGED-IN TIME *(reported in decimal hours)*
