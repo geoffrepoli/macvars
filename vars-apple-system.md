@@ -52,7 +52,7 @@ expr $(/usr/sbin/sysctl -n hw.memsize) / 1073741274
 
 ###### TIME ZONE
 ```bash
-systemsetup -gettimezone | awk -F': ' '{print $NF}'
+/usr/sbin/systemsetup -gettimezone | awk -F': ' '{print $NF}'
 ```
 
 ###### NETWORK TIME STATUS
