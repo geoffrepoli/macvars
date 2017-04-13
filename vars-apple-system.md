@@ -2,35 +2,35 @@
 
 ###### STARTUP DISK NAME
 ```bash
-ioreg -c CoreStorageGroup -d 16 | awk -F\" '/com.apple.corestorage.lvg.name/{print $(NF-1)}'
+/usr/sbin/ioreg -c CoreStorageGroup -d 16 | awk -F\" '/com.apple.corestorage.lvg.name/{print $(NF-1)}'
 ```
 
 ###### SERIAL NUMBER
 ```bash
-ioreg -c IOPlatformExpertDevice -d 2 | awk -F\" '/IOPlatformSerialNumber/{print $(NF-1)}'
+/usr/sbin/ioreg -c IOPlatformExpertDevice -d 2 | awk -F\" '/IOPlatformSerialNumber/{print $(NF-1)}'
 ```
 
 ###### HARDWARE MODEL
 ```bash
-sysctl -n hw.model
+/usr/sbin/sysctl -n hw.model
 ```
 
 ###### COMPUTER NAME ("FRIENDLY NAME")
 ```bash
-scutil --get ComputerName
+/usr/sbin/scutil --get ComputerName
 ```
 
 ###### BONJOUR NAME ("LOCAL SUBNET NAME")
 ```bash
-scutil --get LocalHostName
+/usr/sbin/scutil --get LocalHostName
 ```
 ###### CERTIFICATE EXPIRATION DATE
 ```bash
-security find-certificate -c <NAME_OF_CERT> -p | openssl x509 -enddate -noout | cut -d\= -f2 | xargs -I {} date -jf "%b %d %T %Y %Z" {} "+%F %T %Z"
+/usr/bin/security find-certificate -c <NAME_OF_CERT> -p | /usr/bin/openssl x509 -enddate -noout | cut -d\= -f2 | xargs -I {} date -jf "%b %d %T %Y %Z" {} "+%F %T %Z"
 ```
 ###### HOSTNAME
 ```bash
-sysctl -n kern.hostname
+/usr/sbin/sysctl -n kern.hostname
 # note: can simply use environment variable $HOSTNAME
 ```
 
@@ -43,12 +43,12 @@ expr $(sysctl -n hw.memsize) / 1073741274
 
 ###### GATEKEEPER STATUS
 ```bash
-spctl --status | awk '{print toupper(substr($NF,1,1)) substr($NF,2)}'
+/usr/sbin/spctl --status | awk '{print toupper(substr($NF,1,1)) substr($NF,2)}'
 ```
 
 ###### SPOTLIGHT INDEXING STATUS
 ```bash
-mdutil --status / | sed -e '1d' -e 's/\.//' | awk '{print toupper(substr($NF,1,1)) substr($NF,2)}'
+/usr/bin/mdutil --status / | sed -e '1d' -e 's/\.//' | awk '{print toupper(substr($NF,1,1)) substr($NF,2)}'
 ```
 
 ###### TIME ZONE
@@ -58,35 +58,35 @@ systemsetup -gettimezone | awk -F': ' '{print $NF}'
 
 ###### NETWORK TIME STATUS
 ```bash
-systemsetup -getusingnetworktime | awk -F': ' '{print $NF}'
+/usr/sbin/systemsetup -getusingnetworktime | awk -F': ' '{print $NF}'
 ```
 
 ###### NETWORK TIME SERVER
 ```bash
-systemsetup -getnetworktimeserver | awk -F': ' '{print $NF}'
+/usr/sbin/systemsetup -getnetworktimeserver | awk -F': ' '{print $NF}'
 ```
 
 ###### SSH STATUS
 ```bash
-systemsetup -getremotelogin | awk -F': ' '{print $NF}'
+/usr/sbin/systemsetup -getremotelogin | awk -F': ' '{print $NF}'
 ```
 
 ###### PRINTER SHARING
 ```bash
-cupsctl | grep share | tail -c2
+/usr/sbin/cupsctl | grep share | tail -c2
 ```
 
 ###### COMPUTER SLEEP
 ```bash
-systemsetup -getcomputersleep | awk -F': ' '{print $NF}' | sed 's/after\ //'
+/usr/sbin/systemsetup -getcomputersleep | awk -F': ' '{print $NF}' | sed 's/after\ //'
 ```
 
 ###### DISPLAY SLEEP
 ```bash
-systemsetup -getdisplaysleep | awk -F': ' '{print $NF}' | sed 's/after\ //'
+/usr/sbin/systemsetup -getdisplaysleep | awk -F': ' '{print $NF}' | sed 's/after\ //'
 ```
 
 ###### HARD DISK SLEEP
 ```bash
-systemsetup -getharddisksleep | awk -F': ' '{print $NF}' | sed 's/after\ //'
+/usr/sbin/systemsetup -getharddisksleep | awk -F': ' '{print $NF}' | sed 's/after\ //'
 ```
