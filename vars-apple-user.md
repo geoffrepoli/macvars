@@ -16,9 +16,11 @@
 userhome=$(h=~"$loggedinuser" ; eval h="$h" ; echo "$h")
 ```
 
-###### LOGGED-IN TIME *(reported in decimal hours)*
+###### LOGGED-IN TIME
 ```bash
 /usr/sbin/ac -p | grep -w "$loggedinuser" | awk '{print $NF}'
+# NOTE: As of 10.12.4 this command no longer accurately reports logged-in time. Appears it uses
+# utmp/wtmp, which were deprecated in 10.12 and appear to be no longer used in 10.12.4
 ```
 
 ###### TOUCH ID STATUS
