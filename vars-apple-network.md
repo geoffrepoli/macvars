@@ -2,7 +2,7 @@
 
 ###### ACTIVE NETWORK INTERFACE
 ```bash
-/usr/sbin/wscutil --nwi | grep -A1 "IPv4 network" | sed '1d' | awk '{print $1}'
+/usr/sbin/scutil --nwi | grep -A1 "IPv4 network" | sed '1d' | awk '{print $1}'
 ```
 
 ###### ACTIVE NETWORK SERVICE
