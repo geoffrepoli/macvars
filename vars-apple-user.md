@@ -35,5 +35,5 @@ for USERNAME in $(dscl . read /groups/admin GroupMembership | sed 's/GroupMember
 do [ "$USERNAME" != root ] && ADMIN+=( "$USERNAME" )
 done
 # this creates an array of all local admins (excluding root), which can be called 
-# with variable ${ADMIN[@]}
+# with the array variable ${ADMIN[@]}
 ```
