@@ -1,4 +1,4 @@
-## jamf Info
+## Jamf Info
 
 ###### COMPUTER NAME FROM JSS
 ```bash
