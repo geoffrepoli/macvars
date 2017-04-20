@@ -1,4 +1,4 @@
-## macOS Software
+## macOS & Mac Software Update Information
 
 ###### OS VERSION
 ```bash
