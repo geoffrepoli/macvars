@@ -28,3 +28,11 @@ userhome=$(h=~"$loggedinuser" ; eval h="$h" ; echo "$h")
 /usr/bin/bioutil -c -s | grep -wE "${loggedinuser}|$(id -u "$loggedinuser")"
 # only available on Macs with Touch Bar
 ```
+
+###### LOCAL ADMINS
+```bash
+for USERNAME in $(dscl . read /groups/admin GroupMembership | sed 's/GroupMembership: //')
+do [ "$USERNAME" != root ] && ADMIN+=( "$USERNAME" )
+done
+# this creates an array of all local admins (excluding root), which can be called with variable ${ADMIN[@]}
+```
