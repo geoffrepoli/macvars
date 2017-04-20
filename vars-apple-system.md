@@ -1,4 +1,4 @@
-## System Information
+## Apple System Information
 
 ###### STARTUP DISK NAME
 ```bash
