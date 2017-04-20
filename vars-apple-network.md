@@ -1,4 +1,4 @@
-## Apple Network Info
+## Apple Network Information
 
 ###### ACTIVE NETWORK INTERFACE
 ```bash
