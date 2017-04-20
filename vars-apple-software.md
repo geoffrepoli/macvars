@@ -20,9 +20,11 @@
 /usr/bin/sw_vers -buildVersion
 ```
 
-###### SOFTWARE UPDATE SERVER *(key does not exist if set to default)*
+###### SOFTWARE UPDATE SERVER
 ```bash
-/usr/bin/defaults read /Library/Preferences/com.apple.SoftwareUpdate.plist CatalogURL
+/usr/bin/defaults read /Library/Preferences/com.apple.SoftwareUpdate.plist CatalogURL 2> /dev/null
+
+# note: key does not exist if set to default, thus 2> /dev/null will prevent using stderr
 ```
 
 ###### AUTOMATIC UPDATES ENABLED
