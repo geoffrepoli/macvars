@@ -1,4 +1,4 @@
-## User Info
+## Mac User Information
 
 ###### LOGGED-IN USER NAME
 ```bash
