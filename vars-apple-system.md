@@ -47,7 +47,7 @@ expr $(/usr/sbin/sysctl -n hw.memsize) / 1073741274
 
 ###### SPOTLIGHT INDEXING STATUS
 ```bash
-/usr/bin/mdutil --status / | sed -e '1d' -e 's/\.//' | awk '{print toupper(substr($NF,1,1)) substr($NF,2)}'
+/usr/bin/mdutil --status / | awk 'END{gsub(/\./,"");print toupper(substr($NF,1,1)) substr($NF,2)}'
 ```
 
 ###### TIME ZONE
