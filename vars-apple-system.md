@@ -77,15 +77,15 @@ expr $(/usr/sbin/sysctl -n hw.memsize) / 1073741274
 
 ###### COMPUTER SLEEP
 ```bash
-/usr/sbin/systemsetup -getcomputersleep | awk -F': ' '{print $NF}' | sed 's/after\ //'
+/usr/sbin/systemsetup -getcomputersleep | awk -F': ' '{print $NF}'
 ```
 
 ###### DISPLAY SLEEP
 ```bash
-/usr/sbin/systemsetup -getdisplaysleep | awk -F': ' '{print $NF}' | sed 's/after\ //'
+/usr/sbin/systemsetup -getdisplaysleep | awk -F': ' '{print $NF}'
 ```
 
 ###### HARD DISK SLEEP
 ```bash
-/usr/sbin/systemsetup -getharddisksleep | awk -F': ' '{print $NF}' | sed 's/after\ //'
+/usr/sbin/systemsetup -getharddisksleep | awk -F': ' '{print $NF}'
 ```
