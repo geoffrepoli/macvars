@@ -72,7 +72,7 @@ expr $(/usr/sbin/sysctl -n hw.memsize) / 1073741274
 
 ###### PRINTER SHARING
 ```bash
-/usr/sbin/cupsctl | grep share | tail -c2
+/usr/sbin/cupsctl | awk -F= '/share/{print $NF}'
 ```
 
 ###### COMPUTER SLEEP
