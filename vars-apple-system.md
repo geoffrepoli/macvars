@@ -7,7 +7,7 @@ ioreg -c CoreStorageGroup -d 16 | awk -F\" '/com.apple.corestorage.lvg.name/{pri
 
 ##### LOGICAL VOLUME UUID (LVUUID)
 ```bash
-ioreg -c CoreStorageLogical | awk -F'= ' '/\"UUID/{print $2}' | sed 's/\"//g'
+ioreg -c CoreStorageLogical | awk -F\" '/\"UUID/{print $(NF-1)}'
 ```
 
 ###### SERIAL NUMBER
