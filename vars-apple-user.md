@@ -28,12 +28,3 @@ ac -p | grep -w "$loggedinuser" | awk '{print $NF}'
 bioutil -c -s | grep -wE "${loggedinuser}|$(id -u "$loggedinuser")"
 # only available on Macs with Touch Bar
 ```
-
-###### LOCAL ADMINS
-```bash
-for user in $(dscl . read /groups/admin GroupMembership | sed 's/GroupMembership: //'); do 
-  [[ $user != root ]] && admins+=( "$user" )
-done
-# this creates an array of all local admins (excluding root), which can be called 
-# with the array variable ${ADMIN[@]}
-```
