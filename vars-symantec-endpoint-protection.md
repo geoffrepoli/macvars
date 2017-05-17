@@ -2,7 +2,7 @@
 
 ###### SEP VERSION
 ```
-/usr/bin/defaults read "/Applications/Symantec Solutions/Symantec Endpoint Protection.app/Contents/Info.plist" CFBundleShortVersionString
+defaults read "/Applications/Symantec Solutions/Symantec Endpoint Protection.app/Contents/Info.plist" CFBundleShortVersionString
 ```
 
 ###### LAST AV SCAN
