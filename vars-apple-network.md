@@ -32,5 +32,5 @@ networksetup -getairportnetwork "$(networksetup -listallhardwareports | grep -A1
 
 ###### IP ADDRESS
 ```bash
-ipconfig getifaddr "$(/usr/sbin/scutil --nwi | grep -A1 "IPv4 network" | sed '1d' | awk '{print $1}')"
+ipconfig getifaddr "$(scutil --nwi | grep -A1 "IPv4 network" | sed '1d' | awk '{print $1}')"
 ```
