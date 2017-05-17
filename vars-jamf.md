@@ -2,5 +2,5 @@
 
 ###### COMPUTER NAME FROM JSS
 ```bash
-/usr/local/bin/jamf getComputerName | awk -F'[<>]' '{print $3}'
+/usr/local/jamf/bin/jamf getComputerName | awk -F'[<>]' '{print $3}'
 ```
