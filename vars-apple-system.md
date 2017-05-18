@@ -2,17 +2,17 @@
 
 ###### STARTUP DISK NAME
 ```bash
-ioreg -c CoreStorageGroup -d 16 | awk -F\" '/lvg.name/{print $(NF-1)}'
+ioreg -rc CoreStorageGroup | awk -F\" '/lvg.name/{print $(NF-1)}'
 ```
 
 ##### LOGICAL VOLUME UUID (LVUUID)
 ```bash
-ioreg -c CoreStorageLogical | awk -F\" '/"UUID"/{print $(NF-1)}'
+ioreg -rc CoreStorageLogical | awk -F\" '/"UUID"/{print $(NF-1)}'
 ```
 
 ###### SERIAL NUMBER
 ```bash
-ioreg -c IOPlatformExpertDevice -d 2 | awk -F\" '/IOPlatformSerialNumber/{print $(NF-1)}'
+ioreg -rc IOPlatformExpertDevice -d2 | awk -F\" '/SerialNumber/{print $(NF-1)}'
 ```
 
 ###### HARDWARE MODEL
@@ -22,7 +22,7 @@ sysctl -n hw.model
 
 ###### BATTERY CYCLE COUNT
 ```bash
-ioreg -r -c AppleSmartBattery | awk '/"CycleCount"/{print $NF}'
+ioreg -rc AppleSmartBattery | awk '/"CycleCount"/{print $NF}'
 ```
 
 ###### COMPUTER NAME ("FRIENDLY NAME")
