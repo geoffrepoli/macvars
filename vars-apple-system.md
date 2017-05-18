@@ -20,6 +20,11 @@ ioreg -c IOPlatformExpertDevice -d 2 | awk -F\" '/IOPlatformSerialNumber/{print 
 sysctl -n hw.model
 ```
 
+###### BATTERY CYCLE COUNT
+```bash
+ioreg -r -c AppleSmartBattery | awk '/"CycleCount"/{print $NF}'
+```
+
 ###### COMPUTER NAME ("FRIENDLY NAME")
 ```bash
 scutil --get ComputerName
