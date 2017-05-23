@@ -55,6 +55,11 @@ expr $(sysctl -n hw.memsize) / 1073741274
 spctl --status | awk '{print toupper(substr($NF,1,1)) substr($NF,2)}'
 ```
 
+###### SYSTEM INTEGRITY PROTECTION STATUS
+```bash
+csrutil status | awk -F': ' 'END{gsub(/\./,"");print toupper(substr($NF,1,1)) substr($NF,2)}'
+```
+
 ###### SPOTLIGHT INDEXING STATUS
 ```bash
 mdutil --status / | awk 'END{gsub(/\./,"");print toupper(substr($NF,1,1)) substr($NF,2)}'
