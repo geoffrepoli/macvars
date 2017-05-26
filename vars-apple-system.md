@@ -50,6 +50,12 @@ expr $(sysctl -n hw.memsize) / 1073741274
 # set variable to above with your_variable=$(( $(/usr/sbin/sysctl -n hw.memsize) / 1073741274 ))
 ```
 
+###### USER IDLE TIME
+```bash
+ioreg -rc IOHIDSystem | awk '/HIDIdleTime/{printf "%1.0f\n", $NF/1000000000}'
+# use in a while loop: `while true; do ioreg -rc IOHIDSystem | awk '/HIDIdleTime/{printf "%1.0f\n", $NF/1000000000}'; done`
+```
+
 ###### GATEKEEPER STATUS
 ```bash
 spctl --status | awk '{print toupper(substr($NF,1,1)) substr($NF,2)}'
