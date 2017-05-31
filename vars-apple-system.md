@@ -54,37 +54,37 @@ ioreg -rc IOHIDSystem | awk '/HIDIdleTime/{printf "%1.0f\n",$NF/1000000000}'
 
 ###### GATEKEEPER STATUS
 ```bash
-spctl --status | awk '{print toupper(substr($NF,1,1)) substr($NF,2)}'
+spctl --status | awk '{print toupper(substr($NF,1,1))substr($NF,2)}'
 ```
 
 ###### SYSTEM INTEGRITY PROTECTION STATUS
 ```bash
-csrutil status | awk -F': ' 'END{gsub(/\./,"");print toupper(substr($NF,1,1)) substr($NF,2)}'
+csrutil status | awk -F: '{gsub(/\./,"");print toupper(substr($NF,2,1)) substr($NF,3)}'
 ```
 
 ###### SPOTLIGHT INDEXING STATUS
 ```bash
-mdutil --status / | awk 'END{gsub(/\./,"");print toupper(substr($NF,1,1)) substr($NF,2)}'
+mdutil --status / | awk 'END{gsub(/\./,"");print toupper(substr($NF,1,1))substr($NF,2)}'
 ```
 
 ###### TIME ZONE
 ```bash
-systemsetup -gettimezone | awk -F': ' '{print $NF}'
+systemsetup -gettimezone | awk -F: '{print substr($NF,2)}'
 ```
 
 ###### NETWORK TIME STATUS
 ```bash
-systemsetup -getusingnetworktime | awk -F': ' '{print $NF}'
+systemsetup -getusingnetworktime | awk -F: '{print substr($NF,2)}'
 ```
 
 ###### NETWORK TIME SERVER
 ```bash
-systemsetup -getnetworktimeserver | awk -F': ' '{print $NF}'
+systemsetup -getnetworktimeserver | awk -F: '{print substr($NF,2)}'
 ```
 
 ###### SSH STATUS
 ```bash
-systemsetup -getremotelogin | awk -F': ' '{print $NF}'
+systemsetup -getremotelogin | awk -F: '{print substr($NF,2)}'
 ```
 
 ###### PRINTER SHARING
@@ -94,15 +94,15 @@ cupsctl | awk -F= '/share/{print $2}'
 
 ###### COMPUTER SLEEP
 ```bash
-systemsetup -getcomputersleep | awk -F': ' '{print $NF}'
+systemsetup -getcomputersleep | awk -F: '{print substr($2,2)}'
 ```
 
 ###### DISPLAY SLEEP
 ```bash
-systemsetup -getdisplaysleep | awk -F': ' '{print $NF}'
+systemsetup -getdisplaysleep | awk -F: '{print substr($2,2)}'
 ```
 
 ###### HARD DISK SLEEP
 ```bash
-systemsetup -getharddisksleep | awk -F': ' '{print $NF}'
+systemsetup -getharddisksleep | awk -F: '{print substr($2,2)}'
 ```
