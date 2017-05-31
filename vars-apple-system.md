@@ -52,8 +52,8 @@ expr $(sysctl -n hw.memsize) / 1073741274
 
 ###### USER IDLE TIME
 ```bash
-ioreg -rc IOHIDSystem | awk '/HIDIdleTime/{printf "%1.0f\n", $NF/1000000000}'
-# use in a while loop: `while true; do ioreg -rc IOHIDSystem | awk '/HIDIdleTime/{printf "%1.0f\n", $NF/1000000000}'; done`
+ioreg -rc IOHIDSystem | awk '/HIDIdleTime/{printf "%1.0f\n",$NF/1000000000}'
+# use in a while loop: `while true; do ioreg -rc IOHIDSystem | awk '/HIDIdleTime/{printf "%1.0f\n",$NF/1000000000}'; done`
 ```
 
 ###### GATEKEEPER STATUS
