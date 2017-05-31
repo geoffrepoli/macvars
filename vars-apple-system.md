@@ -36,7 +36,7 @@ scutil --get LocalHostName
 ```
 ###### CERTIFICATE EXPIRATION DATE
 ```bash
-security find-certificate -c <NAME_OF_CERT> -p | /usr/bin/openssl x509 -enddate -noout | cut -d\= -f2 | xargs -I {} date -jf "%b %d %T %Y %Z" {} "+%F %T %Z"
+security find-certificate -c <NAME_OF_CERT> -p | /usr/bin/openssl x509 -enddate -noout | cut -d= -f2 | xargs -I{} date -jf "%b %d %T %Y %Z" {} "+%F %T %Z"
 ```
 ###### HOSTNAME
 ```bash
@@ -47,7 +47,7 @@ sysctl -n kern.hostname
 ###### RAM (GB)
 ```bash
 expr $(sysctl -n hw.memsize) / 1073741274
-# set variable to above with your_variable=$(( $(/usr/sbin/sysctl -n hw.memsize) / 1073741274 ))
+# set variable to above with your_variable=$(( $(sysctl -n hw.memsize) / 1073741274 ))
 ```
 
 ###### USER IDLE TIME
