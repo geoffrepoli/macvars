@@ -42,8 +42,7 @@ security find-certificate -c <NAME_OF_CERT> -p | /usr/bin/openssl x509 -enddate 
 
 ###### RAM (GB)
 ```bash
-expr $(sysctl -n hw.memsize) / 1073741274
-# set variable to above with your_variable=$(( $(sysctl -n hw.memsize) / 1073741274 ))
+sysctl -n hw.memsize | awk '{print $1/1073741274}'
 ```
 
 ###### USER IDLE TIME
