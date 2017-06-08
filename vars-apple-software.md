@@ -23,7 +23,7 @@ sw_vers -buildVersion
 ###### LIST ALL 32-BIT APPLICATIONS
 ```bash
 while IFS= read -r path ; do 
-  file "$path"/Contents/MacOS/* | awk -F: '!/for/&&/i386/&&!/x86_64/{ gsub("^.*/",""); print $1 }'
+  file "$path"/Contents/MacOS/* | awk -F: '!/for/&&/i386/&&!/x86_64/{gsub("^.*/","");print $1}'
 done < <(find /Applications -name "*.app")
 ```
 
