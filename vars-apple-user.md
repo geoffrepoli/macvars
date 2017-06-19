@@ -25,7 +25,7 @@ ac -p | grep -w $loggedInUser | awk '{print $NF}'
 
 ###### LAST AD PASSWORD CHANGE DATE
 ```bash
-dscl localhost read /Search/Users/$loggedInUser SMBPasswordLastSet | awk 'END{printf "%.0f",($NF/10000000)-11644473600}' | xargs date -r
+dscl localhost read /Search/Users/$loggedInUser SMBPasswordLastSet | awk 'END{printf "%.0f",($NF/10000000)-11644473600}' | xargs -I{} date -r {} "+%F %T %Z"
 ```
 
 ###### TOUCH ID STATUS
