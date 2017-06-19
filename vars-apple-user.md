@@ -9,7 +9,7 @@
 
 ###### LOGGED-IN USER HOME
 ```bash
-dscl . read /users/"$loggedinuser" NFSHomeDirectory | awk -F': ' '{print $NF}'
+dscl . read /users/$loggedInUser NFSHomeDirectory | awk -F': ' '{print $NF}'
 # Note: the command above will not work if user is a network account
 # The following workflow, while strange, will work on any user type.
 # $userhome variable name is just a placeholder, feel free to change.
@@ -18,13 +18,18 @@ userhome=$(h=~"$loggedinuser" ; eval h="$h" ; echo "$h")
 
 ###### LOGGED-IN TIME
 ```bash
-ac -p | grep -w "$loggedinuser" | awk '{print $NF}'
+ac -p | grep -w $loggedInUser | awk '{print $NF}'
 # NOTE: As of 10.12.4 this command no longer accurately reports logged-in time. Appears it uses
 # utmp/wtmp, which were deprecated in 10.12 and appear to be no longer used in 10.12.4
 ```
 
+###### LAST AD PASSWORD CHANGE DATE
+```bash
+dscl localhost read /Search/Users/$loggedInUser SMBPasswordLastSet | awk 'END{printf "%.0f",($NF/10000000)-11644473600}' | xargs date -r
+```
+
 ###### TOUCH ID STATUS
 ```bash
-bioutil -c -s | grep -wE "${loggedinuser}|$(id -u "$loggedinuser")"
+bioutil -c -s | grep -wE "$loggedInUser|$(id -u "$loggedInUser")"
 # only available on Macs with Touch Bar
 ```
