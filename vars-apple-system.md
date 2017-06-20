@@ -42,7 +42,7 @@ security find-certificate -c <NAME_OF_CERT> -p | /usr/bin/openssl x509 -enddate 
 
 ###### RAM (GB)
 ```bash
-sysctl -n hw.memsize | awk '{print $1/1073741274}'
+sysctl -n hw.memsize | awk '{print $0/1073741274}'
 ```
 
 ###### USER IDLE TIME
