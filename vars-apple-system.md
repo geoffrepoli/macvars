@@ -5,16 +5,6 @@
 ioreg -rc CoreStorageGroup | awk -F\" '/lvg.name/{print $(NF-1)}'
 ```
 
-###### LOGICAL VOLUME UUID
-```bash
-ioreg -rc CoreStorageLogical | awk -F\" '/"UUID"/{print $(NF-1)}'
-```
-
-###### LOGICAL VOLUME GROUP UUID
-```bash
-ioreg -rc CoreStorageLogical | awk -F\" '/LVG/{print $(NF-1)}'
-```
-
 ###### SERIAL NUMBER
 ```bash
 ioreg -rc IOPlatformExpertDevice -d2 | awk -F\" '/SerialNumber/{print $(NF-1)}'
@@ -25,9 +15,14 @@ ioreg -rc IOPlatformExpertDevice -d2 | awk -F\" '/SerialNumber/{print $(NF-1)}'
 sysctl -n hw.model
 ```
 
-###### BATTERY CYCLE COUNT
+###### LOGICAL VOLUME UUID
 ```bash
-ioreg -rc AppleSmartBattery | awk '/"CycleCount"/{print $NF}'
+ioreg -rc CoreStorageLogical | awk -F\" '/"UUID"/{print $(NF-1)}'
+```
+
+###### LOGICAL VOLUME GROUP UUID
+```bash
+ioreg -rc CoreStorageLogical | awk -F\" '/LVG/{print $(NF-1)}'
 ```
 
 ###### COMPUTER NAME ("FRIENDLY NAME")
@@ -54,6 +49,11 @@ sysctl -n hw.memsize | awk '{print $0/1073741274}'
 ```bash
 ioreg -rc IOHIDSystem | awk '/HIDIdleTime/{printf "%1.0f\n",$NF/1000000000}'
 # use in a while loop: `while true; do ioreg -rc IOHIDSystem | awk '/HIDIdleTime/{printf "%1.0f\n",$NF/1000000000}'; done`
+```
+
+###### BATTERY CYCLE COUNT
+```bash
+ioreg -rc AppleSmartBattery | awk '/"CycleCount"/{print $NF}'
 ```
 
 ###### GATEKEEPER STATUS
