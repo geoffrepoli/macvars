@@ -5,9 +5,14 @@
 ioreg -rc CoreStorageGroup | awk -F\" '/lvg.name/{print $(NF-1)}'
 ```
 
-##### LOGICAL VOLUME UUID (LVUUID)
+###### LOGICAL VOLUME UUID
 ```bash
 ioreg -rc CoreStorageLogical | awk -F\" '/"UUID"/{print $(NF-1)}'
+```
+
+###### LOGICAL VOLUME GROUP UUID
+```bash
+ioreg -rc CoreStorageLogical | awk -F\" '/LVG/{print $(NF-1)}'
 ```
 
 ###### SERIAL NUMBER
