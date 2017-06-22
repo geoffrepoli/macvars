@@ -110,3 +110,9 @@ systemsetup -getdisplaysleep | awk -F: '{print substr($2,2)}'
 ```bash
 systemsetup -getharddisksleep | awk -F: '{print substr($2,2)}'
 ```
+
+###### LIST ALL SIP-PROTECTED FILES
+```bash
+find -x / /System/Library/* -flags restricted -prune -print
+# Apple does not regularly maintain /System/Librarty/Sandbox/rootless.conf, so this will print every file/directory that is protected by System Integrity Protection
+```
