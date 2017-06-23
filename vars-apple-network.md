@@ -1,11 +1,11 @@
 ## Mac Network Information
 
-###### ACTIVE NETWORK INTERFACE
+###### ACTIVE NETWORK DEVICE (e.g., en0)
 ```bash
 scutil --nwi | grep -A1 "IPv4 network" | sed '1d' | awk '{print $1}'
 ```
 
-###### ACTIVE NETWORK SERVICE
+###### ACTIVE NETWORK SERVICE (e.g., Wi-Fi)
 ```bash
 networksetup -listallhardwareports | grep $(scutil --nwi | grep -A1 "IPv4 network" | sed '1d' | awk '{print $1}') -B1 | awk -F': ' '/Hardware Port/{print $NF}'
 ```
