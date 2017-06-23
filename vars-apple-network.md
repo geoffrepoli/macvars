@@ -15,7 +15,7 @@ networksetup -listallhardwareports | grep $(scutil --nwi | grep -A1 "IPv4 networ
 networksetup -getmacaddress $(scutil --nwi | grep -A1 "IPv4 network" | sed '1d' | awk '{print $1}') | awk '{print $3}'
 ```
 
-###### WI-FI INTERFACE
+###### WI-FI DEVICE
 ```bash
 networksetup -listallhardwareports | grep -A1 Wi-Fi | awk -F': ' '/Device/{print $NF}'
 ```
