@@ -2,17 +2,17 @@
 
 ###### ACTIVE NETWORK DEVICE (e.g., en0)
 ```bash
-scutil --nwi | scutil --nwi | awk '/IPv4/{getline;print $1;exit}'
+scutil --nwi | awk '/IPv4/{getline;print $1;exit}'
 ```
 
 ###### ACTIVE NETWORK SERVICE (e.g., Wi-Fi)
 ```bash
-networksetup -listallhardwareports | grep $(scutil --nwi | scutil --nwi | awk '/IPv4/{getline;print $1;exit}') -B1 | awk -F': ' '/Hardware Port/{print $NF}'
+networksetup -listallhardwareports | grep $(scutil --nwi | awk '/IPv4/{getline;print $1;exit}') -B1 | awk -F': ' '/Hardware Port/{print $NF}'
 ```
 
 ###### ACTIVE MAC ADDRESS
 ```bash
-networksetup -getmacaddress $(scutil --nwi | scutil --nwi | awk '/IPv4/{getline;print $1;exit}') | awk '{print $3}'
+networksetup -getmacaddress $(scutil --nwi | awk '/IPv4/{getline;print $1;exit}') | awk '{print $3}'
 ```
 
 ###### WI-FI DEVICE
@@ -32,5 +32,5 @@ networksetup -getairportnetwork "$(networksetup -listallhardwareports | grep -A1
 
 ###### IP ADDRESS
 ```bash
-ipconfig getifaddr "$(scutil --nwi | scutil --nwi | awk '/IPv4/{getline;print $1;exit}')"
+ipconfig getifaddr "$(scutil --nwi | awk '/IPv4/{getline;print $1;exit}')"
 ```
