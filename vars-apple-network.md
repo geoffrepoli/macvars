@@ -7,7 +7,7 @@ scutil --nwi | awk '/IPv4/{getline;print $1;exit}'
 
 ###### ACTIVE NETWORK SERVICE (e.g., Wi-Fi)
 ```bash
-networksetup -listallhardwareports | grep $(scutil --nwi | awk '/IPv4/{getline;print $1;exit}') -B1 | awk -F': ' '/Hardware Port/{print $NF}'
+networksetup -listallhardwareports | awk -F': ' -v d=$(scutil --nwi | awk '/IPv4/{getline;print $1;exit}') '$0~d{print a}{a=$NF}'
 ```
 
 ###### ACTIVE MAC ADDRESS
