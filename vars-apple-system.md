@@ -96,19 +96,19 @@ systemsetup -getremotelogin | awk -F: '{print substr($NF,2)}'
 cupsctl | awk -F= '/share/{print $2}'
 ```
 
-###### COMPUTER SLEEP
+###### COMPUTER SLEEP (SECONDS)
 ```bash
 systemsetup -getcomputersleep | awk -F: '{print substr($2,2)}'
 ```
 
-###### DISPLAY SLEEP
+###### DISPLAY SLEEP (SECONDS)
 ```bash
-systemsetup -getdisplaysleep | awk -F: '{print substr($2,2)}'
+systemsetup -getdisplaysleep | awk -F: '{gsub(/[A-Za-z]/,"");print $2*60}'
 ```
 
-###### HARD DISK SLEEP
+###### HARD DISK SLEEP (SECONDS)
 ```bash
-systemsetup -getharddisksleep | awk -F: '{print substr($2,2)}'
+systemsetup -getharddisksleep | awk -F: '{gsub(/[A-Za-z]/,"");print $2*60}'
 ```
 
 ###### LIST ALL SIP-PROTECTED FILES
