@@ -10,6 +10,11 @@ ioreg -rc CoreStorageGroup | awk -F\" '/lvg.name/{print $(NF-1)}'
 ioreg -rc IOPlatformExpertDevice -d2 | awk -F\" '/SerialNumber/{print $(NF-1)}'
 ```
 
+###### PLATFORM UUID/UDID
+```bash
+ioreg -c IOPlatformExpertDevice -d 2 | awk -F\" '/IOPlatformUUID/{print $(NF-1)}'
+```
+
 ###### HARDWARE MODEL
 ```bash
 sysctl -n hw.model
