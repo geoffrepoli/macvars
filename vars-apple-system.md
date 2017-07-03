@@ -2,7 +2,7 @@
 
 ###### STARTUP DISK NAME
 ```bash
-ioreg -rd1 -c CoreStorageGroup | awk -F\" '/lvg.name/{print $(NF-1)}'
+ioreg -rd1 -c CoreStorageGroup | awk -F\" '/lvg.n/{print $(NF-1)}'
 ```
 
 ###### SERIAL NUMBER
