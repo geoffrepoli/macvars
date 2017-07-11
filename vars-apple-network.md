@@ -17,7 +17,7 @@ networksetup -getmacaddress $(scutil --nwi | awk '/IPv4/{getline;print $1;exit}'
 
 ###### WI-FI DEVICE
 ```bash
-networksetup -listallhardwareports | awk -F': ' '/Wi-Fi/{getline;print $2}'
+networksetup -listallhardwareports | awk '/Wi-Fi/{getline;print $2}'
 ```
 
 ###### WI-FI POWER
