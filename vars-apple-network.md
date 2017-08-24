@@ -2,17 +2,17 @@
 
 ###### ACTIVE NETWORK DEVICE (e.g., en0)
 ```bash
-scutil --nwi | awk '/IPv4/{getline;print $1;exit}'
+scutil --nwi | awk '/IPv4/{getline;print $1}'
 ```
 
 ###### ACTIVE NETWORK SERVICE (e.g., Wi-Fi)
 ```bash
-networksetup -listallhardwareports | awk -F': ' -v v=$(scutil --nwi | awk '/IPv4/{getline;print $1;exit}') '$0~v{print a}{a=$NF}'
+networksetup -listallhardwareports | awk -F': ' -v v=$(scutil --nwi | awk '/IPv4/{getline;print $1}') '$0~v{print a}{a=$NF}'
 ```
 
 ###### ACTIVE MAC ADDRESS
 ```bash
-networksetup -getmacaddress $(scutil --nwi | awk '/IPv4/{getline;print $1;exit}') | awk '{print $3}'
+networksetup -getmacaddress $(scutil --nwi | awk '/IPv4/{getline;print $1}') | awk '{print $3}'
 ```
 
 ###### WI-FI DEVICE
@@ -32,7 +32,7 @@ networksetup -getairportnetwork $(networksetup -listallhardwareports | awk -F': 
 
 ###### INTERNAL IP ADDRESS
 ```bash
-ipconfig getifaddr $(scutil --nwi | awk '/IPv4/{getline;print $1;exit}')
+ipconfig getifaddr $(scutil --nwi | awk '/IPv4/{getline;print $1}')
 ```
 
 ###### PUBLIC IP ADDRESS
