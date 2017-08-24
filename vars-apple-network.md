@@ -30,12 +30,12 @@ networksetup -getairportpower $(networksetup -listallhardwareports | awk -F': ' 
 networksetup -getairportnetwork $(networksetup -listallhardwareports | awk -F': ' '/Wi-Fi/{getline;print $2}') 2>/dev/null | awk -F': ' '{print $NF}'
 ```
 
-###### INTERNAL IP ADDRESS
+###### INTERNAL IPv4 ADDRESS
 ```bash
 ipconfig getifaddr $(scutil --nwi | awk '/IPv4/{getline;print $1}')
 ```
 
-###### PUBLIC IP ADDRESS
+###### PUBLIC IPv4 ADDRESS
 ```bash
 dig +short myip.opendns.com @resolver1.opendns.com
 ```
