@@ -2,22 +2,22 @@
 
 ###### ACTIVE DIRECTORY DOMAIN
 ```bash
-dsconfigad -show | awk -F'= ' '/A.*D.*Do/{print $NF}'
+dsconfigad -show | awk -F'= ' '/A*Dir.*D/{print $NF}'
 ```
 
 ###### ACTIVE DIRECTORY FOREST
 ```bash
-dsconfigad -show | awk -F'= ' '/A.*D.*Fo/{print $NF}'
+dsconfigad -show | awk -F'= ' '/A*Dir.*F/{print $NF}'
 ```
 
 ###### COMPUTER ACCOUNT
 ```bash
-dsconfigad -show | awk -F'= ' '/Co.*Ac/{print substr($NF,1,length($NF)-1)}'
+dsconfigad -show | awk -F'= ' '/Com.*Acc/{print substr($NF,1,length($NF)-1)}'
 ```
 
 ###### ALLOWED ADMIN GROUPS
 ```bash
-dsconfigad -show | awk -F'= ' '/ad.*gr/{print $NF}'
+dsconfigad -show | awk -F'= ' '/ad.*groups/{print $NF}'
 ```
 
 ###### NETWORK PROTOCOL
@@ -37,10 +37,10 @@ dsconfigad -show | awk -F'= ' '/startup/{print $NF}'
 
 ###### PACKET SIGNING
 ```bash
-dsconfigad -show | awk -F'= ' '/Pa.*si/{print $NF}'
+dsconfigad -show | awk -F'= ' '/Pa.*sig/{print $NF}'
 ```
 
 ###### PACKET ENCRYPTION
 ```bash
-dsconfigad -show | awk -F'= ' '/P.*en/{print $NF}'
+dsconfigad -show | awk -F'= ' '/Pa.*enc/{print $NF}'
 ```
