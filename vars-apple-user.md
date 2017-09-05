@@ -33,3 +33,9 @@ dscl localhost read /Search/Users/$loggedInUser SMBPasswordLastSet | awk 'END{pr
 bioutil -c -s | grep -wE "$loggedInUser|$(id -u "$loggedInUser")"
 # only available on Macs with Touch Bar
 ```
+
+##### GET ALL LOCAL/MOBILE USERS
+```bash
+dscl . list /users uid | awk '$2>=499{print $1}'
+# add to an array with users+=( $(dscl . list /users uid | awk '$2>=499{print $1}') )
+```
