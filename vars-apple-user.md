@@ -30,8 +30,8 @@ dscl localhost read /Search/Users/$loggedInUser SMBPasswordLastSet | awk 'END{pr
 
 ##### TOUCH ID STATUS
 ```bash
-bioutil -c -s | grep -wE "$loggedInUser|$(id -u "$loggedInUser")"
-# only available on Macs with Touch Bar
+bioutil -c -s | grep -wE "$loggedInUser|$(id -u $loggedInUser)" | cut -f2-
+# only available on Macs with Touch Bar, must run as root
 ```
 
 ##### GET ALL LOCAL/MOBILE USERS
