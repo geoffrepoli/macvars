@@ -2,17 +2,17 @@
 
 ###### ACTIVE DIRECTORY DOMAIN
 ```bash
-dsconfigad -show | awk -F'= ' '/A*Dir.*D/{print $NF}'
+dsconfigad -show | awk '/A*Dir.*D/{print $NF}'
 ```
 
 ###### ACTIVE DIRECTORY FOREST
 ```bash
-dsconfigad -show | awk -F'= ' '/A*Dir.*F/{print $NF}'
+dsconfigad -show | awk '/A*Dir.*F/{print $NF}'
 ```
 
 ###### COMPUTER ACCOUNT
 ```bash
-dsconfigad -show | awk -F'= ' '/Com.*Acc/{print substr($NF,1,length($NF)-1)}'
+dsconfigad -show | '/Com.*Acc/{print substr($NF,1,length($NF)-1)}'
 ```
 
 ###### ALLOWED ADMIN GROUPS
@@ -22,17 +22,17 @@ dsconfigad -show | awk -F'= ' '/ad.*groups/{print $NF}'
 
 ###### NETWORK PROTOCOL
 ```bash
-dsconfigad -show | awk -F'= ' '/protocol/{print $NF}'
+dsconfigad -show | awk '/protocol/{print $NF}'
 ```
 
 ###### USING MOBILE ACCOUNTS
 ```bash
-dsconfigad -show | awk -F'= ' '/mobile/{print $NF}'
+dsconfigad -show | awk '/mobile/{print $NF}'
 ```
 
 ###### USING LOCAL HOMES
 ```bash
-dsconfigad -show | awk -F'= ' '/startup/{print $NF}'
+dsconfigad -show | awk '/startup/{print $NF}'
 ```
 
 ###### PACKET SIGNING
