@@ -12,7 +12,7 @@ dsconfigad -show | awk '/A*Dir.*F/{print $NF}'
 
 ###### COMPUTER ACCOUNT
 ```bash
-dsconfigad -show | '/Com.*Acc/{print substr($NF,1,length($NF)-1)}'
+dsconfigad -show | awk '/Com.*Acc/{print substr($NF,1,length($NF)-1)}'
 ```
 
 ###### ALLOWED ADMIN GROUPS
