@@ -1,6 +1,6 @@
 ## Mac Network Information
 
-###### ACTIVE NETWORK DEVICE (e.g., en0)
+###### ACTIVE NETWORK INTERFACE (e.g., en0)
 ```bash
 scutil --nwi | awk '/IPv4/{getline;print $1}'
 ```
