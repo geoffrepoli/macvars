@@ -15,7 +15,7 @@ networksetup -listallhardwareports | awk -F': ' -v v=$(scutil --nwi | awk '/IPv4
 networksetup -getmacaddress $(scutil --nwi | awk '/IPv4/{getline;print $1}') | awk '{print $3}'
 ```
 
-###### WI-FI INTERFACE NAME
+###### WI-FI INTERFACE
 ```bash
 networksetup -listallhardwareports | awk '/Wi-Fi/{getline;print $2}'
 ```
