@@ -2,7 +2,7 @@
 
 ###### ACTIVE NETWORK INTERFACE (e.g., en0)
 ```bash
-scutil --nwi | awk '/IPv4/{getline;print $1}'
+scutil --nwi | awk '/IPv4/{getline;print $1;exit}'
 ```
 
 ###### ACTIVE NETWORK SERVICE (e.g., Wi-Fi)
