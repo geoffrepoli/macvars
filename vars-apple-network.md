@@ -2,17 +2,17 @@
 
 ###### ACTIVE NETWORK INTERFACE (e.g., en0)
 ```bash
-scutil --nwi | awk '/IPv4/{getline;print $1;exit}'
+scutil --nwi | awk '/^IPv4/{i[NR+1]};NR in i{print $1}'
 ```
 
 ###### ACTIVE NETWORK SERVICE (e.g., Wi-Fi)
 ```bash
-networksetup -listallhardwareports | awk -F': ' -v v="$(scutil --nwi | awk '/IPv4/{getline;print $1;exit}')" '$0~v{print a}{a=$NF}'
+networksetup -listallhardwareports | awk -F': ' -v v="$(scutil --nwi | awk '/^IPv4/{i[NR+1]};NR in i{print $1}')" '$0~v{print a}{a=$NF}'
 ```
 
 ###### ACTIVE MAC ADDRESS
 ```bash
-networksetup -getmacaddress $(scutil --nwi | awk '/IPv4/{getline;print $1}') | awk '{print $3}'
+networksetup -getmacaddress $(scutil --nwi | awk '/IPv4/{getline;print $1;exit}') | awk '{print $3}'
 ```
 
 ###### WI-FI INTERFACE
@@ -32,10 +32,15 @@ networksetup -getairportnetwork $(networksetup -listallhardwareports | awk -F': 
 
 ###### INTERNAL IP ADDRESS
 ```bash
-ipconfig getifaddr $(scutil --nwi | awk '/IPv4/{getline;print $1}')
+scutil --nwi | awk '/^IPv4/{i[NR+2]};NR in i{print $3;exit}'
 ```
 
 ###### PUBLIC IPv4 ADDRESS
 ```bash
 dig +short myip.opendns.com @resolver1.opendns.com
+```
+
+###### IPV6 ADDRESS
+```bash
+scutil --nwi | awk '/^IPv6/{i[NR+2]};NR in i{print $3}'
 ```
