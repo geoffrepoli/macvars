@@ -27,7 +27,7 @@ networksetup -getairportpower $(networksetup -listallhardwareports | awk -F': ' 
 
 ###### CURRENT SSID
 ```bash
-networksetup -getairportnetwork $(networksetup -listallhardwareports | awk -F': ' '/Wi-Fi/{getline;print $2}') 2>/dev/null | awk -F': ' '{print $NF}'
+networksetup -getairportnetwork $(networksetup -listallhardwareports | awk -F': ' '/Wi-Fi/{getline;print $2}') | awk -F': ' '{print $NF}'
 ```
 
 ###### INTERNAL IP ADDRESS
