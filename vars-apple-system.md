@@ -50,6 +50,11 @@ security find-certificate -c <NAME_OF_CERT> -p | /usr/bin/openssl x509 -enddate 
 sysctl -n hw.memsize | awk '{print $0/1073741274}'
 ```
 
+###### LAST REBOOT
+```bash
+sysctl -n kern.boottime | awk -F'} ' '{print $NF}' | xargs -I{} date -jf "%a %b %d %T %Y" {} "+%F %T %Z"
+```
+
 ###### USER IDLE TIME
 ```bash
 ioreg -rd1 -c IOHIDSystem | awk '/HIDIdleTime/{printf "%1.0f\n",$NF/1000000000}'
