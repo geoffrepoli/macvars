@@ -1,6 +1,6 @@
 ## Mac System Information
 
-###### STARTUP DISK NAME
+###### STARTUP DISK NAME <sup>(removed in 10.13)</sup>
 ```bash
 ioreg -rd1 -c CoreStorageGroup | awk -F\" '/lvg.n/{print $(NF-1)}'
 ```
@@ -20,12 +20,12 @@ ioreg -rd1 -c IOPlatformExpertDevice | awk -F\" '/UUID/{print $(NF-1)}'
 sysctl -n hw.model
 ```
 
-###### LOGICAL VOLUME UUID
+###### LOGICAL VOLUME UUID <sup>(removed in 10.13)</sup>
 ```bash
 ioreg -rd1 -c CoreStorageLogical | awk -F\" '/"UUID"/{print $(NF-1)}'
 ```
 
-###### LOGICAL VOLUME GROUP UUID
+###### LOGICAL VOLUME GROUP UUID <sup>(removed in 10.13)</sup>
 ```bash
 ioreg -rd1 -c CoreStorageLogical | awk -F\" '/LVG/{print $(NF-1)}'
 ```
