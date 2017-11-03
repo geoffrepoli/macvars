@@ -27,8 +27,8 @@ basename $(launchctl asuser $(id -u $loggedInUser) osascript -e 'set front_app t
 
 ###### LIST ALL 32-BIT APPLICATIONS
 ```bash
-while IFS= read -r path ; do 
-  file "$path"/Contents/MacOS/* | awk -F: '!/for/&&/i386/&&!/x86_64/{gsub("^.*/","");print $1}'
+while IFS= read -r path
+do file "$path"/Contents/MacOS/* | awk -F: '!/for/&&/i386/&&!/x86_64/{gsub("^.*/","");print $1}'
 done < <(find /Applications -name "*.app")
 ```
 
