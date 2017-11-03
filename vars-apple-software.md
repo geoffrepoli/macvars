@@ -21,8 +21,7 @@ sw_vers -buildVersion
 ```
 
 ###### FRONTMOST APP
-```
-bash
+```bash
 basename $(osascript -e 'set front_app to (path to frontmost application as Unicode text)' -e 'get POSIX path of front_app')
 ```
 
