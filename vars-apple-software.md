@@ -20,6 +20,12 @@ sw_vers -productVersion | awk -F. '{print $3}'
 sw_vers -buildVersion
 ```
 
+###### FRONTMOST APP
+```
+bash
+basename $(osascript -e 'set front_app to (path to frontmost application as Unicode text)' -e 'get POSIX path of front_app')
+```
+
 ###### LIST ALL 32-BIT APPLICATIONS
 ```bash
 while IFS= read -r path ; do 
