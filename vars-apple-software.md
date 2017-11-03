@@ -22,7 +22,7 @@ sw_vers -buildVersion
 
 ###### FRONTMOST APP
 ```bash
-basename $(launchctl asuser $(id -u $loggedInUser) osascript -e 'set front_app to (path to frontmost application as Unicode text)' -e 'get POSIX path of front_app')
+basename $(launchctl asuser $(id -u $loggedInUser) osascript -e 'get POSIX path of (path to frontmost application)')
 ```
 
 ###### LIST ALL 32-BIT APPLICATIONS
