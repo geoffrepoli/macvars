@@ -22,7 +22,7 @@ sw_vers -buildVersion
 
 ###### FRONTMOST APP
 ```bash
-basename $(launchctl asuser $(id -u $loggedInUser) osascript -e 'get POSIX path of (path to frontmost application)')
+osascript -e 'tell app "System Events" to return name of first application process whose frontmost is true'
 ```
 
 ###### LIST ALL 32-BIT APPLICATIONS
