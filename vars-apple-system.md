@@ -15,9 +15,9 @@ ioreg -rd1 -c IOPlatformExpertDevice | awk -F\" '/S.*N/{print $(NF-1)}'
 sysctl -n hw.model
 ```
 
-###### MARKETING MODEL
+###### MARKETING MODEL <sup>(credit: @zack_mccauley)</sup>
 ```bash
-defaults read /System/Library/PrivateFrameworks/ServerInformation.framework/Versions/A/Resources/English.lproj/SIMachineAttributes.plist $(sysctl -n hw.model) | awk -F\" '/m*Model/{print $(NF-1)}'
+/usr/libexec/PlistBuddy -c "Print :$(/usr/sbin/sysctl -n hw.model):_LOCALIZABLE_:marketingModel" /System/Library/PrivateFrameworks/ServerInformation.framework/Resources/English.lproj/SIMachineAttributes.plist
 ```
 
 ###### HARDWARE UUID/UDID
