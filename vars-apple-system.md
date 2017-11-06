@@ -10,14 +10,19 @@ ioreg -rd1 -c CoreStorageGroup | awk -F\" '/lvg.n/{print $(NF-1)}'
 ioreg -rd1 -c IOPlatformExpertDevice | awk -F\" '/S.*N/{print $(NF-1)}'
 ```
 
-###### HARDWARE UUID/UDID
-```bash
-ioreg -rd1 -c IOPlatformExpertDevice | awk -F\" '/UUID/{print $(NF-1)}'
-```
-
 ###### HARDWARE MODEL
 ```bash
 sysctl -n hw.model
+```
+
+###### MARKETING MODEL
+```bash
+defaults read /System/Library/PrivateFrameworks/ServerInformation.framework/Versions/A/Resources/English.lproj/SIMachineAttributes.plist $(sysctl -n hw.model) | awk -F\" '/m*Model/{print $(NF-1)}'
+```
+
+###### HARDWARE UUID/UDID
+```bash
+ioreg -rd1 -c IOPlatformExpertDevice | awk -F\" '/UUID/{print $(NF-1)}'
 ```
 
 ###### LOGICAL VOLUME UUID <sup>(removed in 10.13)</sup>
