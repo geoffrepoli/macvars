@@ -16,10 +16,10 @@ sysctl -n hw.model
 ```
 
 ###### MARKETING MODEL
-<sup>(credit: @zack_mccauley)</sup>
 ```bash
 /usr/libexec/PlistBuddy -c "Print :$(sysctl -n hw.model):_LOCALIZABLE_:marketingModel" /System/Library/PrivateFrameworks/ServerInformation.framework/Resources/English.lproj/SIMachineAttributes.plist
 ```
+<sup>(credit: @zack_mccauley)</sup>
 
 ###### HARDWARE UUID/UDID
 ```bash
