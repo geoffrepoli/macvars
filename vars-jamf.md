@@ -7,6 +7,5 @@
 
 ###### JSS COMPUTER ID
 ```bash
-uuid=$(ioreg -rd1 -c IOPlatformExpertDevice | awk -F\" '/UUID/{print $(NF-1)}')
-curl -skX GET -u $jssuser:$jsspass $jssurl/JSSResource/computers/udid/$uuid | xmllint --xpath "string(/computer/general/id)" -
+curl -skX GET -u $jssuser:$jsspass "$jssurl/JSSResource/computers/udid/$(ioreg -rd1 -c IOPlatformExpertDevice | awk -F\" '/UUID/{print $(NF-1)}')" | xmllint --xpath "string(/computer/general/id)" -
 ```
