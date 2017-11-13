@@ -21,6 +21,11 @@ sysctl -n hw.model
 /usr/libexec/PlistBuddy -c "Print :$(sysctl -n hw.model):_LOCALIZABLE_:marketingModel" /System/Library/PrivateFrameworks/ServerInformation.framework/Resources/English.lproj/SIMachineAttributes.plist
 ```
 
+###### EFI VERSION
+```bash
+/usr/libexec/efiupdater | awk '/Raw/{print $NF}'
+```
+
 ###### HARDWARE UUID/UDID
 ```bash
 ioreg -rd1 -c IOPlatformExpertDevice | awk -F\" '/UUID/{print $(NF-1)}'
