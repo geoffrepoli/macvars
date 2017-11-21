@@ -23,7 +23,7 @@ ac -p | awk -v u=$loggedInUser '$0~u{print $2}'
 # utmp/wtmp, which were deprecated in 10.12 and appear to be no longer used in 10.12.4
 ```
 
-###### REPORT USERS WHO HAVE NOT LOGGED IN >90 DAYS
+##### REPORT USERS WHO HAVE NOT LOGGED IN >90 DAYS
 ```bash
 find /Users -path /Users/Shared -prune -o -type d -maxdepth 1 -mindepth 1 -atime +90 -exec basename {} +
 ```
