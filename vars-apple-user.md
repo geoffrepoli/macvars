@@ -23,6 +23,11 @@ ac -p | awk -v u=$loggedInUser '$0~u{print $2}'
 # utmp/wtmp, which were deprecated in 10.12 and appear to be no longer used in 10.12.4
 ```
 
+#### USER LAST-LOGIN TIMESTAMP (UNIX TIME)
+```bash
+dscl . read /users/<username> dsAttrTypeNative:accountPolicyData | awk -F'[<>]' '/lastLogin/{getline;printf "%1.0f\n",$3}'
+```
+
 ##### LAST AD PASSWORD CHANGE DATE
 ```bash
 dscl localhost read /Search/Users/$loggedInUser SMBPasswordLastSet | awk 'END{printf "%.0f",($NF/10000000)-11644473600}' | xargs -I{} date -r {} "+%F %T %Z"
