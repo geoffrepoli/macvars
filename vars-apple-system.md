@@ -69,7 +69,7 @@ sysctl -n kern.boottime | awk -F'} ' '{print $NF}' | xargs -I{} date -jf "%a %b 
 ###### USER IDLE TIME
 ```bash
 ioreg -rd1 -c IOHIDSystem | awk '/HIDIdleTime/{printf "%1.0f\n",$NF/1000000000}'
-# use in a while loop: `while true; do ioreg -rc IOHIDSystem | awk '/HIDIdleTime/{printf "%1.0f\n",$NF/1000000000}'; done`
+# use in a while loop: `while (( $(ioreg -rd1 -c IOHIDSystem | awk '/HIDIdleTime/{printf "%1.0f\n",$NF/1000000000}') < [time in seconds] )); do sleep 0.1; done`
 ```
 
 ###### BATTERY CYCLE COUNT
