@@ -1,6 +1,6 @@
 # MAC VARS
 
-### Bash variables for macOS scripting
+### Helpful shell variables for scripting macOS
 
 [Active Directory](https://github.com/geoffrepoli/mac-variables/blob/master/vars-active_directory.md) - parsed `dsconfigad` output
 
