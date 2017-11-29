@@ -2,14 +2,14 @@
 
 ### Bash variables for macOS scripting
 
-[Active Directory](https://github.com/geoffrepoli/mac-variables/blob/master/vars-active_directory.md) - Mostly utilizing `dsconfigad`
+[Active Directory](https://github.com/geoffrepoli/mac-variables/blob/master/vars-active_directory.md) - parsed `dsconfigad` output
 
-[Network Information](vars-apple-network.md) - `networksetup` commands and related
+[Network Information](vars-apple-network.md) - IP, DNS, network device info
 
-[System Information](vars-apple-system.md) - Hardware, `systemsetup` items, and other device-related variables
+[System Information](vars-apple-system.md) - Hardware info, parsed `ioreg` output, system status 
 
-[macOS Software](vars-apple-software.md) - Operating system variables, Software Updates
+[macOS Software](vars-apple-software.md) - macOS and Apple application info
 
-[User Info](vars-apple-user.md) - Attributes specific to the (usually) logged-in user.
+[User Info](vars-apple-user.md) - Status and details specific to the (usually) logged-in user.
 
-#### Pull requests are always welcome
+#### ** Pull requests are always welcome! **
