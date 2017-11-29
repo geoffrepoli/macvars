@@ -11,3 +11,5 @@
 [macOS Software](vars-apple-software.md) - Operating system variables, Software Updates
 
 [User Info](vars-apple-user.md) - Attributes specific to the (usually) logged-in user.
+
+#### Pull requests are always welcome
