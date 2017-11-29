@@ -2,7 +2,7 @@
 
 ### Helpful shell variables for scripting macOS
 
-[Active Directory](https://github.com/geoffrepoli/mac-variables/blob/master/vars-active_directory.md) - parsed `dsconfigad` output
+[Active Directory](vars-active_directory.md) - parsed `dsconfigad` output
 
 [Network Information](vars-apple-network.md) - IP, DNS, network device info
 
