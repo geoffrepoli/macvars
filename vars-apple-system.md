@@ -22,6 +22,7 @@ sysctl -n hw.model
 ```
 
 ###### EFI VERSION
+<sup>Incompatible with 10.14+</sup>
 ```bash
 /usr/libexec/efiupdater | awk '/Raw/{print $NF}'
 ```
