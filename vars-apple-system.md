@@ -138,3 +138,7 @@ systemsetup -getharddisksleep | awk -F: '{gsub(/[A-Za-z]/,"");print $2*60}'
 find -x / /System/Library/* -flags restricted -prune -print
 # Apple does not regularly maintain /System/Librarty/Sandbox/rootless.conf, so this will print every file/directory that is protected by System Integrity Protection
 ```
+
+###### GET APP SECURE TIMESTAMP (FOR 10.14.5 NOTARIZATION)
+```bash
+stapler validate -v <PATH TO APP/KEXT> | awk -F\" '/secureT/{print $(NF-1)}' | cut -d+ -f1 | xargs -I{} date -jf "%Y-%m-%d %T" {} "+%F %T %Z"
