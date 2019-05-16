@@ -27,7 +27,7 @@ osascript -e 'tell app "System Events" to return name of first application proce
 
 ###### LIST ALL 32-BIT APPLICATIONS
 ```bash
-while IFS= read -r path; do file "$path"/Contents/MacOS/* | awk -F: '!/for/&&/i386/&&!/x86_64/{gsub(/\ /,"\\ ");print $1}'; done < <(find -x / -path /System -prune -o -name "*.app" 2> /dev/null)
+while IFS= read -r app; do file "$app"/Contents/MacOS/* | awk -F: '!/for/&&/i386/&&!/x86_64/{gsub(/\ /,"\\ ");print $1}'; done < <(find -x / -path /System -prune -o -name "*.app" 2> /dev/null)
 ```
 
 ###### SOFTWARE UPDATE SERVER
