@@ -75,7 +75,7 @@ ioreg -rd1 -c IOHIDSystem | awk '/HIDIdleTime/{printf "%1.0f\n",$NF/1000000000}'
 
 ###### BATTERY CYCLE COUNT
 ```bash
-ioreg -rd1 -c AppleSmartBattery | awk '/"CycleCount"/{print $NF}'
+ioreg -rd1 -c AppleSmartBattery | awk '$1=="\"CycleCount\""{print $NF}'
 ```
 
 ###### GATEKEEPER STATUS
