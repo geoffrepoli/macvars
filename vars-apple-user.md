@@ -2,7 +2,7 @@
 
 ##### LOGGED-IN USER NAME
 ```bash
-/usr/bin/python -c 'from SystemConfiguration import SCDynamicStoreCopyConsoleUser; import sys; username = (SCDynamicStoreCopyConsoleUser(None, None, None) or [None])[0]; username = [username,""][username in [u"loginwindow", None, u""]]; sys.stdout.write(username + "\n");'
+stat -f%Su /dev/console
 # The remaining variables on this page are written with the assumptiont that you're assigning this command
 # to a variable $loggedinuser. Ensure your workflow is configured appropriately
 ```
