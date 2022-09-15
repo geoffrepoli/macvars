@@ -1,18 +1,24 @@
 ## Mac Network Information
 
 ###### ACTIVE NETWORK INTERFACE (e.g., en0)
+<sub>Include VPN Virtual Interface</sub>
 ```bash
 scutil --nwi | awk '/IPv4/{getline;print $1;exit}'
 ```
 
+<sub>Ignore VPN Virtual Interface</sub>
+```bash
+scutil --nwi | grep -v utun | awk '/IPv4/{i++}i==2{print $1;exit}'
+```
+
 ###### ACTIVE NETWORK SERVICE (e.g., Wi-Fi)
 ```bash
-networksetup -listallhardwareports | awk -F': ' -v v="$(scutil --nwi | awk '/IPv4/{getline;print $1;exit}')" '$0~v{print a}{a=$NF}'
+networksetup -listallhardwareports | awk -F': ' -v v="$(scutil --nwi | grep -v utun | awk '/IPv4/{i++}i==2{print $1;exit}')" '$0~v{print a}{a=$NF}'
 ```
 
 ###### ACTIVE MAC ADDRESS
 ```bash
-networksetup -getmacaddress $(scutil --nwi | awk '/IPv4/{getline;print $1;exit}') | awk '{print $3}'
+networksetup -getmacaddress $(scutil --nwi | grep -v utun | awk '/IPv4/{i++}i==2{print $1;exit}') | awk '{print $3}'
 ```
 
 ###### WI-FI INTERFACE

@@ -7,12 +7,12 @@ sw_vers -productVersion
 
 ###### OS VERSION - MAJOR
 ```bash
-sw_vers -productVersion | awk -F. '{print $2}'
+sw_vers -productVersion | cut -d. -f1
 ```
 
 ###### OS VERSION - MINOR
 ```bash
-sw_vers -productVersion | awk -F. '{print $3}'
+sw_vers -productVersion | cut -d. -f2-
 ```
 
 ###### BUILD NUMBER

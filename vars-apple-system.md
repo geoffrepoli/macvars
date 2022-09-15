@@ -1,9 +1,6 @@
 ## Mac System Information
 
-###### STARTUP DISK NAME <sup>(removed in 10.13)</sup>
-```bash
-ioreg -rd1 -c CoreStorageGroup | awk -F\" '/lvg.n/{print $(NF-1)}'
-```
+#### DEVICE INFO
 
 ###### SERIAL NUMBER
 ```bash
@@ -16,29 +13,19 @@ sysctl -n hw.model
 ```
 
 ###### MARKETING MODEL
-<sup>(credit: [@WardsParadox](https://github.com/WardsParadox))</sup>
+<sub>APPLE SILICON</sub>
 ```bash
-/usr/libexec/PlistBuddy -c "Print :$(sysctl -n hw.model):_LOCALIZABLE_:marketingModel" /System/Library/PrivateFrameworks/ServerInformation.framework/Resources/English.lproj/SIMachineAttributes.plist
+ioreg -rk product-name | awk -F\" '/product-name/{print $(NF-1)}'
 ```
 
-###### EFI VERSION
+<sub>INTEL</sub>
 ```bash
-/usr/libexec/efiupdater | awk '/string/{print $NF}'
+/usr/libexec/PlistBuddy -c "Print :$(sysctl -n hw.model):_LOCALIZABLE_:marketingModel" /System/Library/PrivateFrameworks/ServerInformation.framework/Versions/A/Resources/en.lproj/SIMachineAttributes.plist
 ```
 
 ###### HARDWARE UUID/UDID
 ```bash
 ioreg -rd1 -c IOPlatformExpertDevice | awk -F\" '/UUID/{print $(NF-1)}'
-```
-
-###### LOGICAL VOLUME UUID <sup>(removed in 10.13)</sup>
-```bash
-ioreg -rd1 -c CoreStorageLogical | awk -F\" '/"UUID"/{print $(NF-1)}'
-```
-
-###### LOGICAL VOLUME GROUP UUID <sup>(removed in 10.13)</sup>
-```bash
-ioreg -rd1 -c CoreStorageLogical | awk -F\" '/LVG/{print $(NF-1)}'
 ```
 
 ###### COMPUTER NAME ("FRIENDLY NAME")
@@ -51,31 +38,49 @@ scutil --get ComputerName
 scutil --get LocalHostName
 ```
 
-###### CERTIFICATE EXPIRATION DATE
+###### EFI VERSION (T2 INTEL MACS)
 ```bash
-security find-certificate -c <NAME_OF_CERT> -p | /usr/bin/openssl x509 -enddate -noout | cut -d= -f2 | xargs -I{} date -jf "%b %d %T %Y %Z" {} "+%F %T %Z"
+/usr/libexec/efiupdater | awk '/string/{print $NF}'
 ```
 
-###### RAM (GB)
-```bash
-sysctl -n hw.memsize | awk '{print $0/1073741274}'
-```
+### COMPUTER STATE
 
 ###### LAST REBOOT
 ```bash
 sysctl -n kern.boottime | awk -F'} ' '{print $NF}' | xargs -I{} date -jf "%a %b %d %T %Y" {} "+%F %T %Z"
 ```
 
-###### USER IDLE TIME
-```bash
-ioreg -rd1 -c IOHIDSystem | awk '/HIDIdleTime/{printf "%1.0f\n",$NF/1000000000}'
-# use in a while loop: `while (( $(ioreg -rd1 -c IOHIDSystem | awk '/HIDIdleTime/{printf "%1.0f\n",$NF/1000000000}') < [time in seconds] )); do sleep 0.1; done`
-```
-
 ###### BATTERY CYCLE COUNT
 ```bash
 ioreg -rd1 -c AppleSmartBattery | awk '$1=="\"CycleCount\""{print $NF}'
 ```
+
+###### SPOTLIGHT INDEXING STATUS
+```bash
+mdutil --status / | awk 'END{gsub(/\./,"");print toupper(substr($NF,1,1))substr($NF,2)}'
+```
+
+###### COMPUTER SLEEP IN SECONDS
+```bash
+systemsetup -getcomputersleep | awk -F: '{print substr($2,2)}'
+```
+
+###### DISPLAY SLEEP IN SECONDS
+```bash
+systemsetup -getdisplaysleep | awk -F: '{gsub(/[A-Za-z]/,"");print $2*60}'
+```
+
+###### HARD DISK SLEEP IN SECONDS
+```bash
+systemsetup -getharddisksleep | awk -F: '{gsub(/[A-Za-z]/,"");print $2*60}'
+```
+
+###### PRINTER SHARING
+```bash
+cupsctl | awk -F= '/share/{print $2}'
+```
+
+### SECURITY
 
 ###### GATEKEEPER STATUS
 ```bash
@@ -87,10 +92,23 @@ spctl --status | awk '{print toupper(substr($NF,1,1))substr($NF,2)}'
 csrutil status | awk -F: '{gsub(/\./,"");print toupper(substr($NF,2,1)) substr($NF,3)}'
 ```
 
-###### SPOTLIGHT INDEXING STATUS
+###### CERTIFICATE EXPIRATION DATE
 ```bash
-mdutil --status / | awk 'END{gsub(/\./,"");print toupper(substr($NF,1,1))substr($NF,2)}'
+security find-certificate -c <NAME_OF_CERT> -p | /usr/bin/openssl x509 -enddate -noout | cut -d= -f2 | xargs -I{} date -jf "%b %d %T %Y %Z" {} "+%F %T %Z"
 ```
+
+###### SSH STATUS
+```bash
+systemsetup -getremotelogin | awk -F: '{print substr($NF,2)}'
+```
+
+###### LIST ALL SIP-PROTECTED FILES
+```bash
+find -x / /System/Library/* -flags restricted -prune -print 2>/dev/null
+# Apple does not regularly maintain /System/Librarty/Sandbox/rootless.conf, so this will print every file/directory that is protected by System Integrity Protection. This is mostly for if you're curious as this will take a long time to run & will dump a lot of output
+```
+
+### TIME
 
 ###### TIME ZONE
 ```bash
@@ -107,37 +125,24 @@ systemsetup -getusingnetworktime | awk -F: '{print substr($NF,2)}'
 systemsetup -getnetworktimeserver | awk -F: '{print substr($NF,2)}'
 ```
 
-###### SSH STATUS
+### STORAGE & MEMORY
+
+###### STARTUP DISK NAME (HFS)
 ```bash
-systemsetup -getremotelogin | awk -F: '{print substr($NF,2)}'
+ioreg -rd1 -c CoreStorageGroup | awk -F\" '/lvg.n/{print $(NF-1)}'
 ```
 
-###### PRINTER SHARING
+###### LOGICAL VOLUME UUID (HFS)
 ```bash
-cupsctl | awk -F= '/share/{print $2}'
+ioreg -rd1 -c CoreStorageLogical | awk -F\" '/"UUID"/{print $(NF-1)}'
 ```
 
-###### COMPUTER SLEEP (SECONDS)
+###### LOGICAL VOLUME GROUP UUID (HFS)
 ```bash
-systemsetup -getcomputersleep | awk -F: '{print substr($2,2)}'
+ioreg -rd1 -c CoreStorageLogical | awk -F\" '/LVG/{print $(NF-1)}'
 ```
 
-###### DISPLAY SLEEP (SECONDS)
+###### RAM (GB)
 ```bash
-systemsetup -getdisplaysleep | awk -F: '{gsub(/[A-Za-z]/,"");print $2*60}'
+sysctl -n hw.memsize | awk '{print $0/1073741274}'
 ```
-
-###### HARD DISK SLEEP (SECONDS)
-```bash
-systemsetup -getharddisksleep | awk -F: '{gsub(/[A-Za-z]/,"");print $2*60}'
-```
-
-###### LIST ALL SIP-PROTECTED FILES
-```bash
-find -x / /System/Library/* -flags restricted -prune -print
-# Apple does not regularly maintain /System/Librarty/Sandbox/rootless.conf, so this will print every file/directory that is protected by System Integrity Protection
-```
-
-###### GET APP SECURE TIMESTAMP (FOR 10.14.5 NOTARIZATION)
-```bash
-stapler validate -v <PATH TO APP/KEXT> | awk -F\" '/secureT/{print $(NF-1)}' | cut -d+ -f1 | xargs -I{} date -jf "%Y-%m-%d %T" {} "+%F %T %Z"
