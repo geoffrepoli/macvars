@@ -47,7 +47,9 @@ scutil --get LocalHostName
 
 ###### LAST REBOOT
 ```bash
-sysctl -n kern.boottime | awk -F'} ' '{print $NF}' | xargs -I{} date -jf "%a %b %d %T %Y" {} "+%F %T %Z"
+sysctl -n kern.boottime | cut -d\} -f2- | xargs -I{} date -jf "%a %b %d %T %Y" {} "+%FT%T%z"
+"+%FT%T%z" returns ISO 8601 date. For use in Jamf Pro Extension Attributes, use "+%F %T" instead
+
 ```
 
 ###### BATTERY CYCLE COUNT
