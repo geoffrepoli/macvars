@@ -1,13 +1,13 @@
 ## Mac User Information
 
-###### LOGGED-IN USER NAME
+##### LOGGED-IN USER NAME
 ```bash
 stat -f%Su /dev/console
 # The remaining variables on this page are written with the assumptiont that you're assigning this command
 # to a variable $loggedinuser. Ensure your workflow is configured appropriately
 ```
 
-###### LOGGED-IN USER UID
+##### LOGGED-IN USER UID
 ```bash
 stat -f%u /dev/console
 ```
@@ -38,7 +38,7 @@ dscl . list /users uid | awk '$2>=499{print $1}'
 # add to an array with users+=( $(dscl . list /users uid | awk '$2>=499{print $1}') )
 ```
 
-###### USER IDLE TIME
+##### USER IDLE TIME
 ```bash
 ioreg -rd1 -c IOHIDSystem | awk '/HIDIdleTime/{printf "%1.0f\n",$NF/1000000000}'
 # use in a while loop: `while (( $(ioreg -rd1 -c IOHIDSystem | awk '/HIDIdleTime/{printf "%1.0f\n",$NF/1000000000}') < [time in seconds] )); do sleep 0.1; done`

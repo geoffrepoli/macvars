@@ -1,46 +1,46 @@
 ## Active Directory
 
-###### ACTIVE DIRECTORY DOMAIN
+##### ACTIVE DIRECTORY DOMAIN
 ```bash
 dsconfigad -show | awk '/A*Dir.*D/{print $NF}'
 ```
 
-###### ACTIVE DIRECTORY FOREST
+##### ACTIVE DIRECTORY FOREST
 ```bash
 dsconfigad -show | awk '/A*Dir.*F/{print $NF}'
 ```
 
-###### COMPUTER ACCOUNT
+##### COMPUTER ACCOUNT
 ```bash
 dsconfigad -show | awk '/Com.*Acc/{print substr($NF,1,length($NF)-1)}'
 ```
 
-###### ALLOWED ADMIN GROUPS
+##### ALLOWED ADMIN GROUPS
 ```bash
 dsconfigad -show | awk -F'= ' '/ad.*groups/{print $NF}'
 ```
 
-###### NETWORK PROTOCOL
+##### NETWORK PROTOCOL
 ```bash
 dsconfigad -show | awk '/protocol/{print $NF}'
 ```
 
-###### USING MOBILE ACCOUNTS
+##### USING MOBILE ACCOUNTS
 ```bash
 dsconfigad -show | awk '/mobile/{print $NF}'
 ```
 
-###### USING LOCAL HOMES
+##### USING LOCAL HOMES
 ```bash
 dsconfigad -show | awk '/startup/{print $NF}'
 ```
 
-###### PACKET SIGNING
+##### PACKET SIGNING
 ```bash
 dsconfigad -show | awk -F'= ' '/Pa.*sig/{print $NF}'
 ```
 
-###### PACKET ENCRYPTION
+##### PACKET ENCRYPTION
 ```bash
 dsconfigad -show | awk -F'= ' '/Pa.*enc/{print $NF}'
 ```
