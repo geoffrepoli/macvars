@@ -1,46 +1,45 @@
 ## Mac User Information
 
-##### LOGGED-IN USER NAME
+###### LOGGED-IN USER NAME
 ```bash
 stat -f%Su /dev/console
 # The remaining variables on this page are written with the assumptiont that you're assigning this command
 # to a variable $loggedinuser. Ensure your workflow is configured appropriately
 ```
 
+###### LOGGED-IN USER UID
+```bash
+stat -f%u /dev/console
+```
+
 ##### LOGGED-IN USER HOME
 ```bash
-dscl . read /users/$loggedInUser NFSHomeDirectory | cut -d' ' -f2
-# Note: the command above will not work if user is a network account
-# The following workflow, while strange, will work on any user type.
-# $userhome variable name is just a placeholder, feel free to change.
-userhome=$(h=~"$loggedinuser" ; eval h="$h" ; echo "$h")
+dscl . read /users/$(stat -f%Su /dev/console) NFSHomeDirectory | cut -d' ' -f2-
 ```
 
-##### LOGGED-IN TIME
+##### TOUCH ID ENABLED
 ```bash
-ac -p | awk -v u=$loggedInUser '$0~u{print $2}'
-# NOTE: As of 10.12.4 this command no longer accurately reports logged-in time. Appears it uses
-# utmp/wtmp, which were deprecated in 10.12 and appear to be no longer used in 10.12.4
+bioutil -c -s | grep -wE "$(stat -f%Su /dev/console)|$(stat -f%u /dev/console)" | cut -f2
 ```
 
-##### REPORT USERS WHO HAVE NOT LOGGED IN >90 DAYS
+##### TOUCH ID TIMEOUT IN SECONDS
 ```bash
-find /Users -path /Users/Shared -prune -o -type d -maxdepth 1 -mindepth 1 -atime +90 -exec basename {} +
+bioutil -r -s | awk -F': ' '/timeout/{print $NF}'
 ```
 
-##### LAST AD PASSWORD CHANGE DATE
+##### LAST AD PASSWORD CHANGE DATE FOR MOBILE ACCOUNT
 ```bash
-dscl localhost read /Search/Users/$loggedInUser SMBPasswordLastSet | awk 'END{printf "%.0f",($NF/10000000)-11644473600}' | xargs -I{} date -r {} "+%F %T %Z"
-```
-
-##### TOUCH ID STATUS
-```bash
-bioutil -c -s | grep -wE "$loggedInUser|$(id -u $loggedInUser)" | cut -f2
-# only available on Macs with Touch Bar, must run as root
+dscl localhost read /Search/Users/$(stat -f%Su /dev/console) SMBPasswordLastSet | awk 'END{printf "%.0f",($NF/10000000)-11644473600}' | xargs -I{} date -r {} "+%F %T %Z"
 ```
 
 ##### GET ALL LOCAL/MOBILE USERS
 ```bash
 dscl . list /users uid | awk '$2>=499{print $1}'
 # add to an array with users+=( $(dscl . list /users uid | awk '$2>=499{print $1}') )
+```
+
+###### USER IDLE TIME
+```bash
+ioreg -rd1 -c IOHIDSystem | awk '/HIDIdleTime/{printf "%1.0f\n",$NF/1000000000}'
+# use in a while loop: `while (( $(ioreg -rd1 -c IOHIDSystem | awk '/HIDIdleTime/{printf "%1.0f\n",$NF/1000000000}') < [time in seconds] )); do sleep 0.1; done`
 ```
